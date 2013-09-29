@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE25C1D217F0873D00A3EA32 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FE25C1D117F0873D00A3EA32 /* libz.dylib */; };
+		FE9DA71717F13ACE0014D94A /* HTTPDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = FE9DA71617F13ACE0014D94A /* HTTPDownloader.m */; };
 		FEE462C017E89526001BE2C7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE462BF17E89526001BE2C7 /* UIKit.framework */; };
 		FEE462C217E89526001BE2C7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE462C117E89526001BE2C7 /* Foundation.framework */; };
 		FEE462C417E89526001BE2C7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE462C317E89526001BE2C7 /* CoreGraphics.framework */; };
@@ -21,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FE25C1D117F0873D00A3EA32 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
+		FE9DA71517F13ACE0014D94A /* HTTPDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDownloader.h; sourceTree = "<group>"; };
+		FE9DA71617F13ACE0014D94A /* HTTPDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPDownloader.m; sourceTree = "<group>"; };
 		FEE462BC17E89526001BE2C7 /* SYM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SYM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEE462BF17E89526001BE2C7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FEE462C117E89526001BE2C7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -44,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE25C1D217F0873D00A3EA32 /* libz.dylib in Frameworks */,
 				FEE462C017E89526001BE2C7 /* UIKit.framework in Frameworks */,
 				FEE462C217E89526001BE2C7 /* Foundation.framework in Frameworks */,
 				FEE462C417E89526001BE2C7 /* CoreGraphics.framework in Frameworks */,
@@ -53,9 +59,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FE9DA71417F119AC0014D94A /* HTTPDownloader */ = {
+			isa = PBXGroup;
+			children = (
+				FE9DA71517F13ACE0014D94A /* HTTPDownloader.h */,
+				FE9DA71617F13ACE0014D94A /* HTTPDownloader.m */,
+			);
+			name = HTTPDownloader;
+			path = SYM;
+			sourceTree = "<group>";
+		};
 		FEE462B317E89526001BE2C7 = {
 			isa = PBXGroup;
 			children = (
+				FE9DA71417F119AC0014D94A /* HTTPDownloader */,
 				FEE462C517E89526001BE2C7 /* SYM */,
 				FEE462BE17E89526001BE2C7 /* Frameworks */,
 				FEE462BD17E89526001BE2C7 /* Products */,
@@ -73,6 +90,7 @@
 		FEE462BE17E89526001BE2C7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FE25C1D117F0873D00A3EA32 /* libz.dylib */,
 				FEE462BF17E89526001BE2C7 /* UIKit.framework */,
 				FEE462C117E89526001BE2C7 /* Foundation.framework */,
 				FEE462C317E89526001BE2C7 /* CoreGraphics.framework */,
@@ -134,7 +152,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = com.sym;
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = HsiuYi;
 			};
 			buildConfigurationList = FEE462B717E89526001BE2C7 /* Build configuration list for PBXProject "SYM" */;
@@ -176,6 +194,7 @@
 			files = (
 				FEE462CC17E89526001BE2C7 /* main.m in Sources */,
 				FEE462D017E89526001BE2C7 /* com_symAppDelegate.m in Sources */,
+				FE9DA71717F13ACE0014D94A /* HTTPDownloader.m in Sources */,
 				FEE462DC17E89526001BE2C7 /* com_symViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,7 +285,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SYM/SYM-Prefix.pch";
 				INFOPLIST_FILE = "SYM/SYM-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos6.1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -277,7 +298,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SYM/SYM-Prefix.pch";
 				INFOPLIST_FILE = "SYM/SYM-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos6.1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -301,6 +324,7 @@
 				FEE462E117E89526001BE2C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
