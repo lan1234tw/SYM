@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface com_symViewController : UIViewController
+@interface com_symViewController : UIViewController<UITableViewDataSource> {
+    NSMutableArray* items;
+}
+
+@property (weak, nonatomic) IBOutlet UITableView *itemTableView;
 
 @end
