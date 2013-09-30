@@ -14,6 +14,8 @@
 #import <net/if.h>
 #import <net/if_dl.h>
 
+#import "ZipArchive.h"
+
 @interface com_symViewController ()
 - (NSString *)getMacAddress;
 @end
@@ -138,6 +140,55 @@
     items =[downloader getList:url];
     NSLog(@"items count : %d", [items count]);
     [self.itemTableView reloadData];
+}
+
+
+- (IBAction)testZip_touched:(id)sender {
+    NSURL* url =nil;
+    url =[NSURL URLWithString:@"http://localhost:8080/symBack/a1.zip"];
+    
+    NSData* data =nil;
+    data =[NSData dataWithContentsOfURL:url];
+    
+    if(nil == data) {
+        NSLog(@"無法讀取資料");
+        return;
+    } // if
+    
+    NSFileManager* fileManager =nil;
+    fileManager =[[NSFileManager alloc] init];
+    
+    NSArray *urls =NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    if(0 >= urls.count) {
+        NSLog(@"找不到Cache的folder");
+        return;
+    } // if
+    
+    NSString* filePath =[[NSString alloc] initWithString:urls[0]];
+    filePath =[filePath stringByAppendingPathComponent:[url lastPathComponent]];
+    NSLog(@"寫入路徑及檔名：%@", filePath);
+    
+    BOOL b =[fileManager createFileAtPath:filePath contents:data attributes:nil];
+    if(NO == b) {
+        NSLog(@"Error");
+    } // if
+    
+    NSString* ttt =urls[0];
+    
+    ZipArchive *zipArchive = [[ZipArchive alloc] init];
+    [zipArchive UnzipOpenFile:filePath];
+    [zipArchive UnzipFileTo:ttt overWrite:YES];
+    [zipArchive UnzipCloseFile];
+    
+    // ttt =[ttt stringByAppendingString:@"a1"];
+    
+    NSLog(@"%@", ttt);
+    NSDirectoryEnumerator *dirEnum =[fileManager enumeratorAtPath:ttt];
+    
+    NSString *file;
+    while ((file = [dirEnum nextObject])) {
+        NSLog(@">>> %@", file);
+    } // while
 }
 
 - (IBAction)testMac_touched:(id)sender {
