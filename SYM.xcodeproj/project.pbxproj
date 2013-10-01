@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		FE25C1D217F0873D00A3EA32 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FE25C1D117F0873D00A3EA32 /* libz.dylib */; };
+		FE6F8A6817F90DAF00D502F4 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = FE6F8A5E17F90DAF00D502F4 /* ioapi.c */; };
+		FE6F8A6917F90DAF00D502F4 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = FE6F8A6017F90DAF00D502F4 /* mztools.c */; };
+		FE6F8A6A17F90DAF00D502F4 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = FE6F8A6217F90DAF00D502F4 /* unzip.c */; };
+		FE6F8A6B17F90DAF00D502F4 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = FE6F8A6417F90DAF00D502F4 /* zip.c */; };
+		FE6F8A6C17F90DAF00D502F4 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = FE6F8A6717F90DAF00D502F4 /* ZipArchive.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FE84120717FA720400223592 /* messageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE84120617FA720400223592 /* messageViewController.m */; };
 		FE9DA71717F13ACE0014D94A /* HTTPDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = FE9DA71617F13ACE0014D94A /* HTTPDownloader.m */; };
 		FEE462C017E89526001BE2C7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE462BF17E89526001BE2C7 /* UIKit.framework */; };
 		FEE462C217E89526001BE2C7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE462C117E89526001BE2C7 /* Foundation.framework */; };
@@ -24,6 +30,19 @@
 
 /* Begin PBXFileReference section */
 		FE25C1D117F0873D00A3EA32 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
+		FE6F8A5D17F90DAF00D502F4 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		FE6F8A5E17F90DAF00D502F4 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		FE6F8A5F17F90DAF00D502F4 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		FE6F8A6017F90DAF00D502F4 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		FE6F8A6117F90DAF00D502F4 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		FE6F8A6217F90DAF00D502F4 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		FE6F8A6317F90DAF00D502F4 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		FE6F8A6417F90DAF00D502F4 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		FE6F8A6517F90DAF00D502F4 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		FE6F8A6617F90DAF00D502F4 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
+		FE6F8A6717F90DAF00D502F4 /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
+		FE84120517FA720400223592 /* messageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = messageViewController.h; sourceTree = "<group>"; };
+		FE84120617FA720400223592 /* messageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = messageViewController.m; sourceTree = "<group>"; };
 		FE9DA71517F13ACE0014D94A /* HTTPDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDownloader.h; sourceTree = "<group>"; };
 		FE9DA71617F13ACE0014D94A /* HTTPDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPDownloader.m; sourceTree = "<group>"; };
 		FEE462BC17E89526001BE2C7 /* SYM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SYM.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +78,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FE6F8A5B17F90DAF00D502F4 /* ZipArchive */ = {
+			isa = PBXGroup;
+			children = (
+				FE6F8A5C17F90DAF00D502F4 /* minizip */,
+				FE6F8A6617F90DAF00D502F4 /* ZipArchive.h */,
+				FE6F8A6717F90DAF00D502F4 /* ZipArchive.mm */,
+			);
+			path = ZipArchive;
+			sourceTree = "<group>";
+		};
+		FE6F8A5C17F90DAF00D502F4 /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				FE6F8A5D17F90DAF00D502F4 /* crypt.h */,
+				FE6F8A5E17F90DAF00D502F4 /* ioapi.c */,
+				FE6F8A5F17F90DAF00D502F4 /* ioapi.h */,
+				FE6F8A6017F90DAF00D502F4 /* mztools.c */,
+				FE6F8A6117F90DAF00D502F4 /* mztools.h */,
+				FE6F8A6217F90DAF00D502F4 /* unzip.c */,
+				FE6F8A6317F90DAF00D502F4 /* unzip.h */,
+				FE6F8A6417F90DAF00D502F4 /* zip.c */,
+				FE6F8A6517F90DAF00D502F4 /* zip.h */,
+			);
+			path = minizip;
+			sourceTree = "<group>";
+		};
 		FE9DA71417F119AC0014D94A /* HTTPDownloader */ = {
 			isa = PBXGroup;
 			children = (
@@ -66,13 +111,11 @@
 				FE9DA71617F13ACE0014D94A /* HTTPDownloader.m */,
 			);
 			name = HTTPDownloader;
-			path = SYM;
 			sourceTree = "<group>";
 		};
 		FEE462B317E89526001BE2C7 = {
 			isa = PBXGroup;
 			children = (
-				FE9DA71417F119AC0014D94A /* HTTPDownloader */,
 				FEE462C517E89526001BE2C7 /* SYM */,
 				FEE462BE17E89526001BE2C7 /* Frameworks */,
 				FEE462BD17E89526001BE2C7 /* Products */,
@@ -101,6 +144,10 @@
 		FEE462C517E89526001BE2C7 /* SYM */ = {
 			isa = PBXGroup;
 			children = (
+				FE9DA71417F119AC0014D94A /* HTTPDownloader */,
+				FE6F8A5B17F90DAF00D502F4 /* ZipArchive */,
+				FE84120517FA720400223592 /* messageViewController.h */,
+				FE84120617FA720400223592 /* messageViewController.m */,
 				FEE462CE17E89526001BE2C7 /* com_symAppDelegate.h */,
 				FEE462CF17E89526001BE2C7 /* com_symAppDelegate.m */,
 				FEE462D717E89526001BE2C7 /* MainStoryboard.storyboard */,
@@ -193,9 +240,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEE462CC17E89526001BE2C7 /* main.m in Sources */,
+				FE6F8A6B17F90DAF00D502F4 /* zip.c in Sources */,
+				FE6F8A6A17F90DAF00D502F4 /* unzip.c in Sources */,
 				FEE462D017E89526001BE2C7 /* com_symAppDelegate.m in Sources */,
+				FE6F8A6917F90DAF00D502F4 /* mztools.c in Sources */,
 				FE9DA71717F13ACE0014D94A /* HTTPDownloader.m in Sources */,
 				FEE462DC17E89526001BE2C7 /* com_symViewController.m in Sources */,
+				FE6F8A6C17F90DAF00D502F4 /* ZipArchive.mm in Sources */,
+				FE84120717FA720400223592 /* messageViewController.m in Sources */,
+				FE6F8A6817F90DAF00D502F4 /* ioapi.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
