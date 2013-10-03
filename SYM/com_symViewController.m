@@ -67,6 +67,10 @@
     if (errorFlag != NULL)
     {
         NSLog(@"Error: %@", errorFlag);
+        
+        if(NULL != msgBuffer) {
+            free(msgBuffer);
+        } // if
         return errorFlag;
     }
     

@@ -15,6 +15,8 @@
 		FE6F8A6C17F90DAF00D502F4 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = FE6F8A6717F90DAF00D502F4 /* ZipArchive.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FE84120717FA720400223592 /* messageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE84120617FA720400223592 /* messageViewController.m */; };
 		FE9DA71717F13ACE0014D94A /* HTTPDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = FE9DA71617F13ACE0014D94A /* HTTPDownloader.m */; };
+		FED7DCC317FC62BA0032D745 /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = FED7DCC217FC62BA0032D745 /* test.mp4 */; };
+		FED7DCC517FC654E0032D745 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED7DCC417FC654E0032D745 /* MediaPlayer.framework */; };
 		FEE462C017E89526001BE2C7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE462BF17E89526001BE2C7 /* UIKit.framework */; };
 		FEE462C217E89526001BE2C7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE462C117E89526001BE2C7 /* Foundation.framework */; };
 		FEE462C417E89526001BE2C7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE462C317E89526001BE2C7 /* CoreGraphics.framework */; };
@@ -45,6 +47,8 @@
 		FE84120617FA720400223592 /* messageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = messageViewController.m; sourceTree = "<group>"; };
 		FE9DA71517F13ACE0014D94A /* HTTPDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDownloader.h; sourceTree = "<group>"; };
 		FE9DA71617F13ACE0014D94A /* HTTPDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPDownloader.m; sourceTree = "<group>"; };
+		FED7DCC217FC62BA0032D745 /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
+		FED7DCC417FC654E0032D745 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/MediaPlayer.framework; sourceTree = DEVELOPER_DIR; };
 		FEE462BC17E89526001BE2C7 /* SYM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SYM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEE462BF17E89526001BE2C7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FEE462C117E89526001BE2C7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -69,6 +73,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE25C1D217F0873D00A3EA32 /* libz.dylib in Frameworks */,
+				FED7DCC517FC654E0032D745 /* MediaPlayer.framework in Frameworks */,
 				FEE462C017E89526001BE2C7 /* UIKit.framework in Frameworks */,
 				FEE462C217E89526001BE2C7 /* Foundation.framework in Frameworks */,
 				FEE462C417E89526001BE2C7 /* CoreGraphics.framework in Frameworks */,
@@ -133,6 +138,7 @@
 		FEE462BE17E89526001BE2C7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FED7DCC417FC654E0032D745 /* MediaPlayer.framework */,
 				FE25C1D117F0873D00A3EA32 /* libz.dylib */,
 				FEE462BF17E89526001BE2C7 /* UIKit.framework */,
 				FEE462C117E89526001BE2C7 /* Foundation.framework */,
@@ -144,6 +150,7 @@
 		FEE462C517E89526001BE2C7 /* SYM */ = {
 			isa = PBXGroup;
 			children = (
+				FED7DCC217FC62BA0032D745 /* test.mp4 */,
 				FE9DA71417F119AC0014D94A /* HTTPDownloader */,
 				FE6F8A5B17F90DAF00D502F4 /* ZipArchive */,
 				FE84120517FA720400223592 /* messageViewController.h */,
@@ -225,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEE462CA17E89526001BE2C7 /* InfoPlist.strings in Resources */,
+				FED7DCC317FC62BA0032D745 /* test.mp4 in Resources */,
 				FEE462D217E89526001BE2C7 /* Default.png in Resources */,
 				FEE462D417E89526001BE2C7 /* Default@2x.png in Resources */,
 				FEE462D617E89526001BE2C7 /* Default-568h@2x.png in Resources */,
