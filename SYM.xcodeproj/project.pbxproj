@@ -17,6 +17,8 @@
 		FE9DA71717F13ACE0014D94A /* HTTPDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = FE9DA71617F13ACE0014D94A /* HTTPDownloader.m */; };
 		FED7DCC317FC62BA0032D745 /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = FED7DCC217FC62BA0032D745 /* test.mp4 */; };
 		FED7DCC517FC654E0032D745 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED7DCC417FC654E0032D745 /* MediaPlayer.framework */; };
+		FEDFDFF217FEA02800075A4E /* testDispatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDFDFF117FEA02800075A4E /* testDispatchViewController.m */; };
+		FEDFDFF517FEA31F00075A4E /* stageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDFDFF417FEA31F00075A4E /* stageViewController.m */; };
 		FEE462C017E89526001BE2C7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE462BF17E89526001BE2C7 /* UIKit.framework */; };
 		FEE462C217E89526001BE2C7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE462C117E89526001BE2C7 /* Foundation.framework */; };
 		FEE462C417E89526001BE2C7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE462C317E89526001BE2C7 /* CoreGraphics.framework */; };
@@ -49,6 +51,10 @@
 		FE9DA71617F13ACE0014D94A /* HTTPDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPDownloader.m; sourceTree = "<group>"; };
 		FED7DCC217FC62BA0032D745 /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
 		FED7DCC417FC654E0032D745 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/MediaPlayer.framework; sourceTree = DEVELOPER_DIR; };
+		FEDFDFF017FEA02800075A4E /* testDispatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testDispatchViewController.h; sourceTree = "<group>"; };
+		FEDFDFF117FEA02800075A4E /* testDispatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testDispatchViewController.m; sourceTree = "<group>"; };
+		FEDFDFF317FEA31F00075A4E /* stageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stageViewController.h; sourceTree = "<group>"; };
+		FEDFDFF417FEA31F00075A4E /* stageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = stageViewController.m; sourceTree = "<group>"; };
 		FEE462BC17E89526001BE2C7 /* SYM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SYM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEE462BF17E89526001BE2C7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FEE462C117E89526001BE2C7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -155,9 +161,13 @@
 				FE6F8A5B17F90DAF00D502F4 /* ZipArchive */,
 				FE84120517FA720400223592 /* messageViewController.h */,
 				FE84120617FA720400223592 /* messageViewController.m */,
+				FEDFDFF317FEA31F00075A4E /* stageViewController.h */,
+				FEDFDFF417FEA31F00075A4E /* stageViewController.m */,
 				FEE462CE17E89526001BE2C7 /* com_symAppDelegate.h */,
 				FEE462CF17E89526001BE2C7 /* com_symAppDelegate.m */,
 				FEE462D717E89526001BE2C7 /* MainStoryboard.storyboard */,
+				FEDFDFF017FEA02800075A4E /* testDispatchViewController.h */,
+				FEDFDFF117FEA02800075A4E /* testDispatchViewController.m */,
 				FEE462DA17E89526001BE2C7 /* com_symViewController.h */,
 				FEE462DB17E89526001BE2C7 /* com_symViewController.m */,
 				FEE462C617E89526001BE2C7 /* Supporting Files */,
@@ -252,7 +262,9 @@
 				FE6F8A6A17F90DAF00D502F4 /* unzip.c in Sources */,
 				FEE462D017E89526001BE2C7 /* com_symAppDelegate.m in Sources */,
 				FE6F8A6917F90DAF00D502F4 /* mztools.c in Sources */,
+				FEDFDFF217FEA02800075A4E /* testDispatchViewController.m in Sources */,
 				FE9DA71717F13ACE0014D94A /* HTTPDownloader.m in Sources */,
+				FEDFDFF517FEA31F00075A4E /* stageViewController.m in Sources */,
 				FEE462DC17E89526001BE2C7 /* com_symViewController.m in Sources */,
 				FE6F8A6C17F90DAF00D502F4 /* ZipArchive.mm in Sources */,
 				FE84120717FA720400223592 /* messageViewController.m in Sources */,

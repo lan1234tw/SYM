@@ -21,7 +21,6 @@
 @synthesize moviePlayer = _moviePlayer;
 
 - (void)startPlayVideo:(id)paramSender {
-    @try {
     NSBundle* mainBundle =[NSBundle mainBundle];
     
     NSString* urlAsString =[mainBundle pathForResource:@"test" ofType:@"mp4"];
@@ -52,10 +51,6 @@
     else {
         NSLog(@"無法初始化影片播放器");
     } // else
-    } // @try
-    @catch (NSException* ex) {
-        NSLog(@"%@", ex.debugDescription);
-    }
 }
 
 - (void)stopPlayVideo:(id)paramSender {
