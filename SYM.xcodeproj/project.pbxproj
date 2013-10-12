@@ -15,6 +15,11 @@
 		FE6F8A6C17F90DAF00D502F4 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = FE6F8A6717F90DAF00D502F4 /* ZipArchive.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FE84120717FA720400223592 /* messageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE84120617FA720400223592 /* messageViewController.m */; };
 		FE9DA71717F13ACE0014D94A /* HTTPDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = FE9DA71617F13ACE0014D94A /* HTTPDownloader.m */; };
+		FEA206E11804DCDA00DF1346 /* PageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA206E01804DCDA00DF1346 /* PageModel.m */; };
+		FEBAE2F318092E7F00767A58 /* ContentPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBAE2F218092E7F00767A58 /* ContentPageModel.m */; };
+		FEBAE2F61809804600767A58 /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBAE2F51809804600767A58 /* ContentViewController.m */; };
+		FEBC17DF1804349B005BBEFF /* foa002.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FEBC17DD1804349B005BBEFF /* foa002.jpg */; };
+		FEBC17E01804349B005BBEFF /* foa003.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FEBC17DE1804349B005BBEFF /* foa003.jpg */; };
 		FED7DCC317FC62BA0032D745 /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = FED7DCC217FC62BA0032D745 /* test.mp4 */; };
 		FED7DCC517FC654E0032D745 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED7DCC417FC654E0032D745 /* MediaPlayer.framework */; };
 		FEDFDFF217FEA02800075A4E /* testDispatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDFDFF117FEA02800075A4E /* testDispatchViewController.m */; };
@@ -49,6 +54,14 @@
 		FE84120617FA720400223592 /* messageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = messageViewController.m; sourceTree = "<group>"; };
 		FE9DA71517F13ACE0014D94A /* HTTPDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDownloader.h; sourceTree = "<group>"; };
 		FE9DA71617F13ACE0014D94A /* HTTPDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPDownloader.m; sourceTree = "<group>"; };
+		FEA206DF1804DCDA00DF1346 /* PageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PageModel.h; path = ../PageModel.h; sourceTree = "<group>"; };
+		FEA206E01804DCDA00DF1346 /* PageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PageModel.m; path = ../PageModel.m; sourceTree = "<group>"; };
+		FEBAE2F118092E7F00767A58 /* ContentPageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentPageModel.h; sourceTree = "<group>"; };
+		FEBAE2F218092E7F00767A58 /* ContentPageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentPageModel.m; sourceTree = "<group>"; };
+		FEBAE2F41809804600767A58 /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
+		FEBAE2F51809804600767A58 /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
+		FEBC17DD1804349B005BBEFF /* foa002.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = foa002.jpg; sourceTree = "<group>"; };
+		FEBC17DE1804349B005BBEFF /* foa003.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = foa003.jpg; sourceTree = "<group>"; };
 		FED7DCC217FC62BA0032D745 /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
 		FED7DCC417FC654E0032D745 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/MediaPlayer.framework; sourceTree = DEVELOPER_DIR; };
 		FEDFDFF017FEA02800075A4E /* testDispatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testDispatchViewController.h; sourceTree = "<group>"; };
@@ -124,6 +137,27 @@
 			name = HTTPDownloader;
 			sourceTree = "<group>";
 		};
+		FEBAE2F018092E2D00767A58 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FEBAE2F118092E7F00767A58 /* ContentPageModel.h */,
+				FEBAE2F218092E7F00767A58 /* ContentPageModel.m */,
+				FEA206DF1804DCDA00DF1346 /* PageModel.h */,
+				FEA206E01804DCDA00DF1346 /* PageModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		FEBC17DC1804346F005BBEFF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FED7DCC217FC62BA0032D745 /* test.mp4 */,
+				FEBC17DD1804349B005BBEFF /* foa002.jpg */,
+				FEBC17DE1804349B005BBEFF /* foa003.jpg */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		FEE462B317E89526001BE2C7 = {
 			isa = PBXGroup;
 			children = (
@@ -156,20 +190,23 @@
 		FEE462C517E89526001BE2C7 /* SYM */ = {
 			isa = PBXGroup;
 			children = (
-				FED7DCC217FC62BA0032D745 /* test.mp4 */,
+				FEBC17DC1804346F005BBEFF /* Resources */,
 				FE9DA71417F119AC0014D94A /* HTTPDownloader */,
 				FE6F8A5B17F90DAF00D502F4 /* ZipArchive */,
+				FEBAE2F018092E2D00767A58 /* Model */,
+				FEBAE2F41809804600767A58 /* ContentViewController.h */,
+				FEBAE2F51809804600767A58 /* ContentViewController.m */,
 				FE84120517FA720400223592 /* messageViewController.h */,
 				FE84120617FA720400223592 /* messageViewController.m */,
 				FEDFDFF317FEA31F00075A4E /* stageViewController.h */,
 				FEDFDFF417FEA31F00075A4E /* stageViewController.m */,
 				FEE462CE17E89526001BE2C7 /* com_symAppDelegate.h */,
 				FEE462CF17E89526001BE2C7 /* com_symAppDelegate.m */,
-				FEE462D717E89526001BE2C7 /* MainStoryboard.storyboard */,
 				FEDFDFF017FEA02800075A4E /* testDispatchViewController.h */,
 				FEDFDFF117FEA02800075A4E /* testDispatchViewController.m */,
 				FEE462DA17E89526001BE2C7 /* com_symViewController.h */,
 				FEE462DB17E89526001BE2C7 /* com_symViewController.m */,
+				FEE462D717E89526001BE2C7 /* MainStoryboard.storyboard */,
 				FEE462C617E89526001BE2C7 /* Supporting Files */,
 			);
 			path = SYM;
@@ -243,9 +280,11 @@
 			files = (
 				FEE462CA17E89526001BE2C7 /* InfoPlist.strings in Resources */,
 				FED7DCC317FC62BA0032D745 /* test.mp4 in Resources */,
+				FEBC17E01804349B005BBEFF /* foa003.jpg in Resources */,
 				FEE462D217E89526001BE2C7 /* Default.png in Resources */,
 				FEE462D417E89526001BE2C7 /* Default@2x.png in Resources */,
 				FEE462D617E89526001BE2C7 /* Default-568h@2x.png in Resources */,
+				FEBC17DF1804349B005BBEFF /* foa002.jpg in Resources */,
 				FEE462D917E89526001BE2C7 /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,15 +296,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEA206E11804DCDA00DF1346 /* PageModel.m in Sources */,
 				FEE462CC17E89526001BE2C7 /* main.m in Sources */,
 				FE6F8A6B17F90DAF00D502F4 /* zip.c in Sources */,
 				FE6F8A6A17F90DAF00D502F4 /* unzip.c in Sources */,
+				FEBAE2F318092E7F00767A58 /* ContentPageModel.m in Sources */,
 				FEE462D017E89526001BE2C7 /* com_symAppDelegate.m in Sources */,
 				FE6F8A6917F90DAF00D502F4 /* mztools.c in Sources */,
 				FEDFDFF217FEA02800075A4E /* testDispatchViewController.m in Sources */,
 				FE9DA71717F13ACE0014D94A /* HTTPDownloader.m in Sources */,
 				FEDFDFF517FEA31F00075A4E /* stageViewController.m in Sources */,
 				FEE462DC17E89526001BE2C7 /* com_symViewController.m in Sources */,
+				FEBAE2F61809804600767A58 /* ContentViewController.m in Sources */,
 				FE6F8A6C17F90DAF00D502F4 /* ZipArchive.mm in Sources */,
 				FE84120717FA720400223592 /* messageViewController.m in Sources */,
 				FE6F8A6817F90DAF00D502F4 /* ioapi.c in Sources */,

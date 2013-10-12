@@ -8,6 +8,8 @@
 
 #import "com_symViewController.h"
 #import "HTTPDownloader.h"
+#import "PageModel.h"
+#import "stageViewController.h"
 
 #import <sys/socket.h>
 #import <sys/sysctl.h>
@@ -149,7 +151,7 @@
 
 - (IBAction)testZip_touched:(id)sender {
     NSURL* url =nil;
-    url =[NSURL URLWithString:@"http://localhost:8080/symBack/a1.zip"];
+    url =[NSURL URLWithString:@"http://localhost:8080/symBack/dw1.zip"];
     
     NSData* data =nil;
     data =[NSData dataWithContentsOfURL:url];
@@ -174,21 +176,37 @@
     
     BOOL b =[fileManager createFileAtPath:filePath contents:data attributes:nil];
     if(NO == b) {
-        NSLog(@"Error");
+        NSLog(@"無法寫入下載檔案");
+        return;
     } // if
+    
+    NSString* fileFullName =[url lastPathComponent];
+    NSString* fileName =[fileFullName stringByDeletingPathExtension];
+    NSLog(@"主檔名：%@", fileName);
     
     NSString* ttt =urls[0];
     
     ZipArchive *zipArchive = [[ZipArchive alloc] init];
-    [zipArchive UnzipOpenFile:filePath];
-    [zipArchive UnzipFileTo:ttt overWrite:YES];
+    b =[zipArchive UnzipOpenFile:filePath];
+    if(NO == b) {
+        NSLog(@"無法開啓壓縮檔案");
+        return;
+    } // if
+        
+    b =[zipArchive UnzipFileTo:ttt overWrite:YES];
+    if(NO == b) {
+        NSLog(@"無法解壓縮下載檔案");
+        return;
+    } // if
+    
     [zipArchive UnzipCloseFile];
     
-    // ttt =[ttt stringByAppendingString:@"a1"];
+    ttt =[ttt stringByAppendingPathComponent:fileName];
     
     NSLog(@"%@", ttt);
     NSDirectoryEnumerator *dirEnum =[fileManager enumeratorAtPath:ttt];
     
+    // 把檔案列示出來看看是不是正常
     NSString *file;
     while ((file = [dirEnum nextObject])) {
         NSLog(@">>> %@", file);
@@ -197,6 +215,27 @@
 
 - (IBAction)testMac_touched:(id)sender {
     NSLog(@"%@", self.getMacAddress);
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqualToString:@"toPageViewController"]) {
+        UIPageViewController* pageViewController =nil;
+        pageViewController =(UIPageViewController*)[segue destinationViewController];
+        
+        PageModel* model =nil;
+        model =(PageModel*)pageViewController.dataSource;
+        
+        id returnVal =[self.storyboard instantiateViewControllerWithIdentifier:@"stageViewController"];
+        stageViewController* viewController =nil;
+        viewController =(stageViewController*)returnVal;
+        
+        viewController.imagePath =[model pathOfIndex:0];
+        
+        [pageViewController setViewControllers:@[viewController]
+                            direction:UIPageViewControllerNavigationDirectionForward
+                            animated:YES
+                            completion:nil];
+    } // if
 }
 
 @end

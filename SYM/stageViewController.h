@@ -10,4 +10,7 @@
 
 @interface stageViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIImageView *stageImageView;
+@property (strong, nonatomic) NSString* imagePath;
+
 @end
