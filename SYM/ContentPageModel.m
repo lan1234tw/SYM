@@ -28,6 +28,7 @@
     return self;
 }
 
+// 重新設定ContentPageModel的內容
 - (void)reloadContenetFromPath:(NSString*)path {
     [contents removeAllObjects];
     
@@ -35,12 +36,11 @@
     fileManager =[NSFileManager defaultManager];
     
     NSDirectoryEnumerator *dirEnum =[fileManager enumeratorAtPath:path];
-    
-    // 把檔案列示出來看看是不是正常
+
     NSString *file;
     while ((file = [dirEnum nextObject])) {
+        /// TODO:加入檔案類型偵測的程式碼
         file =[path stringByAppendingPathComponent:file];
-        NSLog(@">>> %@", file);
         [contents addObject:file];
     } // while
 }

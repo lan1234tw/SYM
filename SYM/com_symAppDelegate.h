@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
-@interface com_symAppDelegate : UIResponder <UIApplicationDelegate>
+@interface com_symAppDelegate : UIResponder <UIApplicationDelegate> {
+    NSManagedObjectContext* _context;
+    NSManagedObjectModel* _objectModel;
+    NSPersistentStoreCoordinator* _coordinator;
+}
 
 @property (strong, nonatomic) UIWindow *window;
+
+- (NSManagedObjectContext*)managedObjectContext;
 
 @end

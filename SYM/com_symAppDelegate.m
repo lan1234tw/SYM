@@ -8,6 +8,8 @@
 
 #import "com_symAppDelegate.h"
 
+
+
 @implementation com_symAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -41,6 +43,52 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+
+- (NSURL*)applicationDocumentDirectory {
+    return [[[NSFileManager defaultManager]
+              URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+#pragma marks - Core Data
+- (NSManagedObjectModel*)managedObjectModel {
+    if(nil != _objectModel) {
+        return _objectModel;
+    } // if
+    
+    NSURL* modelURL =[[NSBundle mainBundle] URLForResource:@"ContentModel" withExtension:@"momd"];
+    _objectModel =[[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    return _objectModel;
+}
+
+- (NSPersistentStoreCoordinator*)persistentStoreCoordinator {
+    if(nil != _coordinator) {
+        return _coordinator;
+    } // if
+    
+    NSURL* storeURL =[[self applicationDocumentDirectory] URLByAppendingPathComponent:@"ContentModel.sqlite"];
+    NSError* error =nil;
+    _coordinator =[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    
+    if(nil != [_coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+        NSLog(@"%@", error.debugDescription);
+        abort();
+    } // if
+    
+    return _coordinator;
+}
+
+- (NSManagedObjectContext*)managedObjectContext {
+    if(nil != _context) {
+        return _context;
+    } // if
+    
+    if(nil != _coordinator) {
+        _context =[[NSManagedObjectContext alloc] init];
+        [_context setPersistentStoreCoordinator:_coordinator];
+    } // if
+    return _context;
 }
 
 @end

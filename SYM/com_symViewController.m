@@ -17,6 +17,10 @@
 #import <net/if_dl.h>
 
 #import "ZipArchive.h"
+#import "com_symAppDelegate.h"
+
+#import "ContentBase.h"
+#import "ContentItem.h"
 
 @interface com_symViewController ()
 - (NSString *)getMacAddress;
@@ -107,8 +111,7 @@
     } // if
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -214,7 +217,17 @@
 }
 
 - (IBAction)testMac_touched:(id)sender {
-    NSLog(@"%@", self.getMacAddress);
+  // NSLog(@"%@", self.getMacAddress);
+    
+  // 寫入Core Data資料
+  com_symAppDelegate* appDelegate =nil;
+  appDelegate =(com_symAppDelegate*)[UIApplication sharedApplication].delegate;
+    
+  ContentBase* base =nil;
+  base =[NSEntityDescription insertNewObjectForEntityForName:@"ContentBase"
+                             inManagedObjectContext:appDelegate.managedObjectContext];
+  
+  
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
