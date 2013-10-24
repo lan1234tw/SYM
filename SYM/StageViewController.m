@@ -7,6 +7,7 @@
 //
 
 #import "StageViewController.h"
+#import "com_symAppDelegate.h"
 #import "HTTPDownloader.h"
 
 @interface StageViewController ()
@@ -31,6 +32,12 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+  CGRect frame =self.view.frame;
+  CGSize contentSize =CGSizeMake(frame.size.width*2, frame.size.height);
+  [self.scrooView setContentSize:contentSize];
+  
+  [self.itemBtn1 addTarget:self action:@selector(total_touched:) forControlEvents:UIControlEventTouchUpInside];
+  [self.itemBtn2 addTarget:self action:@selector(total_touched:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,18 +46,22 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
+#pragma mark -
+
+// 回到分類資訊
 - (IBAction)button_touched:(id)sender {
-  /*
-  NSArray *urls =NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-  if(0 >= urls.count) {
-     NSLog(@"找不到Cache的folder");
-     return;
+  [self dismissViewControllerAnimated:NO completion:nil];
+}
+
+
+- (IBAction)total_touched:(id)sender {
+  if([sender isKindOfClass:[UIButton class]]) {
+    UIButton* btn =(UIButton*)sender;
+    
+    NSLog(@"%@ - %d", btn.titleLabel.text, btn.tag);
   } // if
-  */
-  
-  // 當使用者按下開始下載的時候
-  
-  // [downloader resumeItem:url];
 }
 
 @end

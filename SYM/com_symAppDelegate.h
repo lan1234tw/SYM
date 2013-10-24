@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+#import "HTTPDownloader.h"
+
 @interface com_symAppDelegate : UIResponder <UIApplicationDelegate> {
     NSManagedObjectContext* _context;
     NSManagedObjectModel* _objectModel;
@@ -16,6 +18,7 @@
 }
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) HTTPDownloader* downloader;
 
 - (NSManagedObjectModel*)managedObjectModel;
 - (NSPersistentStoreCoordinator*)persistentStoreCoordinator;

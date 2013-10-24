@@ -54,16 +54,16 @@
     return list;
 }
 
-- (void)downloadItem {
+- (NSData*)downloadItem:(NSString*)url param:(NSString*)s {
   ///MARK:以下程式碼是用來參考如何利用NSMutableURLRequest物件POST資料
   
-  NSString *post = @"mac=abcdefg";
+  NSString *post = [[NSString alloc] initWithFormat:@"mac=%@", s];
+  
   NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-
   NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
    
   NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-  [request setURL:[NSURL URLWithString:@"http://127.0.0.1:8080/symBack/Test.jsp"]];
+  [request setURL:[NSURL URLWithString:url]];
   [request setHTTPMethod:@"POST"];
   [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
   [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
@@ -75,7 +75,7 @@
     NSError* err;
     data =[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
     
-    ///MARK:轉型為NSHTTPURLResponse以便取得狀態碼
+    // 轉型為NSHTTPURLResponse以便取得狀態碼
     if(YES == [response isKindOfClass:NSHTTPURLResponse.class]) {
       NSHTTPURLResponse* httpResponse =nil;
       httpResponse =(NSHTTPURLResponse*)response;
@@ -85,9 +85,16 @@
     
     if(nil != err) {
       NSLog(@"%@", err.debugDescription);
-      return;
+      return nil;
     } // if
+    else {
+      return data;
+    } // else
   } // if
+  
+  else {
+    return nil;
+  } // else
 }
 
 @end

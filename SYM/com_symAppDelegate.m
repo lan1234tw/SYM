@@ -11,6 +11,8 @@
 
 
 @implementation com_symAppDelegate
+@synthesize downloader = _downloader;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   // Override point for customization after application launch.

@@ -12,4 +12,8 @@
 @interface StageViewController : UIViewController {
 }
 
+@property (weak, nonatomic) IBOutlet UIButton *itemBtn1;
+@property (weak, nonatomic) IBOutlet UIButton *itemBtn2;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrooView;
+
 @end

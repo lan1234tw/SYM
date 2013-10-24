@@ -8,7 +8,7 @@
 
 #import "com_symViewController.h"
 #import "HTTPDownloader.h"
-#import "stageViewController.h"
+#import "StageViewController.h"
 
 #import <sys/socket.h>
 #import <sys/sysctl.h>
