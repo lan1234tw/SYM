@@ -1,5 +1,5 @@
 //
-//  messageViewController.h
+//  VideoPlaybackViewController.h
 //  SYM
 //
 //  Created by HsiuYi on 13/10/1.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface messageViewController : UIViewController
+@interface VideoPlaybackViewController : UIViewController
 
 @property (nonatomic, strong) MPMoviePlayerController* moviePlayer;
 

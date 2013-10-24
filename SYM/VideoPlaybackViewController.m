@@ -1,15 +1,15 @@
 //
-//  messageViewController.m
+//  VideoPlaybackViewController.m
 //  SYM
 //
 //  Created by HsiuYi on 13/10/1.
 //  Copyright (c) 2013年 HsiuYi. All rights reserved.
 //
 
-#import "messageViewController.h"
+#import "VideoPlaybackViewController.h"
 
 
-@interface messageViewController ()
+@interface VideoPlaybackViewController ()
 
 - (void)startPlayVideo:(id)paramSender;
 - (void)stopPlayVideo:(id)paramSender;
@@ -17,14 +17,13 @@
 
 @end
 
-@implementation messageViewController
+@implementation VideoPlaybackViewController
 @synthesize moviePlayer = _moviePlayer;
 
 - (void)startPlayVideo:(id)paramSender {
     NSBundle* mainBundle =[NSBundle mainBundle];
     
     NSString* urlAsString =[mainBundle pathForResource:@"test" ofType:@"mp4"];
-    
     NSURL* url =[NSURL fileURLWithPath:urlAsString];
     
     if(nil != self.moviePlayer) {

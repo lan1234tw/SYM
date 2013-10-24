@@ -12,10 +12,32 @@
 
 @implementation com_symAppDelegate
 
+
+#pragma mark 檢查網路是否有通
+- (BOOL)isNetworkAvailable {
+  CFNetDiagnosticRef diag;
+  diag = CFNetDiagnosticCreateWithURL (NULL, (__bridge CFURLRef)[NSURL URLWithString:@"www.apple.com"]);
+  CFNetDiagnosticStatus status;
+  status = CFNetDiagnosticCopyNetworkStatusPassively (diag, NULL);
+  
+  CFRelease (diag);
+  
+  if ( status == kCFNetDiagnosticConnectionUp ) {
+    NSLog (@"Connection is up");
+    return YES;
+  } // if
+  else {
+    NSLog (@"Connection is down");
+    return NO;
+  } // else
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    return YES;
+  // Override point for customization after application launch.
+  [self isNetworkAvailable];
+  
+  return YES;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -71,7 +93,8 @@
     NSError* error =nil;
     _coordinator =[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     
-    if(nil != [_coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    if(nil == [_coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+        NSLog(@"%@", error.description);
         NSLog(@"%@", error.debugDescription);
         abort();
     } // if
@@ -84,10 +107,12 @@
         return _context;
     } // if
     
-    if(nil != _coordinator) {
-        _context =[[NSManagedObjectContext alloc] init];
-        [_context setPersistentStoreCoordinator:_coordinator];
+    if(nil == _coordinator) {
+      [self persistentStoreCoordinator];
     } // if
+  
+    _context =[[NSManagedObjectContext alloc] init];
+    [_context setPersistentStoreCoordinator:_coordinator];
     return _context;
 }
 

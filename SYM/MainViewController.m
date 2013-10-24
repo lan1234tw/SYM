@@ -1,18 +1,18 @@
 //
-//  testDispatchViewController.m
+//  MainViewController.m
 //  SYM
 //
-//  Created by HsiuYi on 13/10/4.
+//  Created by HsiuYi on 13/10/22.
 //  Copyright (c) 2013年 HsiuYi. All rights reserved.
 //
 
-#import "testDispatchViewController.h"
+#import "MainViewController.h"
 
-@interface testDispatchViewController ()
+@interface MainViewController ()
 
 @end
 
-@implementation testDispatchViewController
+@implementation MainViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

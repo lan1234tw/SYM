@@ -8,7 +8,6 @@
 
 #import "com_symViewController.h"
 #import "HTTPDownloader.h"
-#import "PageModel.h"
 #import "stageViewController.h"
 
 #import <sys/socket.h>
@@ -146,11 +145,10 @@
     HTTPDownloader* downloader =nil;
     downloader =[[HTTPDownloader alloc] init];
     
-    items =[downloader getList:url];
+    // items =[downloader getList:url];
     NSLog(@"items count : %d", [items count]);
     [self.itemTableView reloadData];
 }
-
 
 - (IBAction)testZip_touched:(id)sender {
     NSURL* url =nil;
@@ -217,38 +215,99 @@
 }
 
 - (IBAction)testMac_touched:(id)sender {
-  // NSLog(@"%@", self.getMacAddress);
+  // [self insertData];
+  // [self testQueryData];
+  
+  HTTPDownloader* downloader =nil;
+  downloader =[[HTTPDownloader alloc] init];
+  
+  // [downloader downloadItem];
+}
+
+/*
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  if([segue.identifier isEqualToString:@"toPageViewController"]) {
+    UIPageViewController* pageViewController =nil;
+    pageViewController =(UIPageViewController*)[segue destinationViewController];
     
-  // 寫入Core Data資料
+    PageModel* model =nil;
+    model =(PageModel*)pageViewController.dataSource;
+    
+    id returnVal =[self.storyboard instantiateViewControllerWithIdentifier:@"ID_StageViewController"];
+    StageViewController* viewController =nil;
+    viewController =(StageViewController*)returnVal;
+    
+    [pageViewController setViewControllers:@[viewController]
+                                 direction:UIPageViewControllerNavigationDirectionForward
+                                  animated:YES
+                                completion:nil];
+  } // if
+}
+*/
+
+#pragma mark - other
+// 寫入測試資料
+- (void)insertData {
   com_symAppDelegate* appDelegate =nil;
   appDelegate =(com_symAppDelegate*)[UIApplication sharedApplication].delegate;
-    
+  
   ContentBase* base =nil;
   base =[NSEntityDescription insertNewObjectForEntityForName:@"ContentBase"
                              inManagedObjectContext:appDelegate.managedObjectContext];
   
+  base.pathBase =@"dw1";
   
+  ///MARK:這段code用來測試使用NSString取代NSDate的話，是否仍然可以適用於區間查詢
+  base.startDate =@"2013/10/01";
+  base.endDate =@"2013/10/23";
+  
+  ContentItem* item =nil;
+  item =[NSEntityDescription insertNewObjectForEntityForName:@"ContentItem"
+                             inManagedObjectContext:appDelegate.managedObjectContext];
+  
+  item.base =base;
+  item.path =@"a1.jpg";
+  
+  // [base addItemsObject:item];
+  
+  NSError* err;
+  [appDelegate.managedObjectContext save:&err];
+  if(nil != err) {
+    NSLog(@"%@", err.debugDescription);
+  } // if
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"toPageViewController"]) {
-        UIPageViewController* pageViewController =nil;
-        pageViewController =(UIPageViewController*)[segue destinationViewController];
-        
-        PageModel* model =nil;
-        model =(PageModel*)pageViewController.dataSource;
-        
-        id returnVal =[self.storyboard instantiateViewControllerWithIdentifier:@"stageViewController"];
-        stageViewController* viewController =nil;
-        viewController =(stageViewController*)returnVal;
-        
-        viewController.imagePath =[model pathOfIndex:0];
-        
-        [pageViewController setViewControllers:@[viewController]
-                            direction:UIPageViewControllerNavigationDirectionForward
-                            animated:YES
-                            completion:nil];
-    } // if
+
+// 測試查詢資料
+- (void)testQueryData {
+  com_symAppDelegate* appDelegate =nil;
+  appDelegate =(com_symAppDelegate*)[UIApplication sharedApplication].delegate;
+  
+  NSPredicate* predicate =[NSPredicate predicateWithFormat:@"endDate >= %@", @"2013/10/20"];
+  
+  NSEntityDescription* desc =nil;
+  desc =[NSEntityDescription entityForName:@"ContentBase" inManagedObjectContext:appDelegate.managedObjectContext];
+  
+  NSFetchRequest* req =nil;
+  req =[[NSFetchRequest alloc] init];
+  [req setEntity:desc];
+  [req setPredicate:predicate];
+  
+  NSError* err =nil;
+  NSArray* result =nil;
+  result =[appDelegate.managedObjectContext executeFetchRequest:req error:&err];
+  if(nil != err) {
+    NSLog(@"%@", err.debugDescription);
+    return;
+  } // if
+  
+  NSLog(@"查詢結果無錯誤，找到資料筆數:%d", result.count);
+  
+  if(0 < result.count) {
+    ContentBase* base =result[0];
+    NSLog(@"%@", base.pathBase);
+    NSLog(@"%@", ((ContentItem*)(base.items[0])).path);
+  } // if
 }
 
 @end

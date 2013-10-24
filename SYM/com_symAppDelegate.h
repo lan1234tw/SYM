@@ -17,6 +17,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+- (NSManagedObjectModel*)managedObjectModel;
+- (NSPersistentStoreCoordinator*)persistentStoreCoordinator;
 - (NSManagedObjectContext*)managedObjectContext;
 
 @end

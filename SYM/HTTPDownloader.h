@@ -8,16 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HTTPDownloader : NSObject
+@interface HTTPDownloader : NSObject {
+  HTTPDownloader* instance;
+}
 
-
-#pragma mark - 讀取下載清單
-- (NSMutableArray*)getList:(NSString*)urlPath;    // MARK:從指定的URL讀取JSON資料
-
-
-#pragma mark - 加入排程讀取
-- (void)addItem;
-- (void)cancelItem;
-
++ (HTTPDownloader*)sharedInstance;
 
 @end

@@ -13,21 +13,21 @@
 		FE6F8A6A17F90DAF00D502F4 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = FE6F8A6217F90DAF00D502F4 /* unzip.c */; };
 		FE6F8A6B17F90DAF00D502F4 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = FE6F8A6417F90DAF00D502F4 /* zip.c */; };
 		FE6F8A6C17F90DAF00D502F4 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = FE6F8A6717F90DAF00D502F4 /* ZipArchive.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		FE84120717FA720400223592 /* messageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE84120617FA720400223592 /* messageViewController.m */; };
+		FE84120717FA720400223592 /* VideoPlaybackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE84120617FA720400223592 /* VideoPlaybackViewController.m */; };
 		FE95D770180CE37D00D2450D /* ContentBase.m in Sources */ = {isa = PBXBuildFile; fileRef = FE95D76F180CE37D00D2450D /* ContentBase.m */; };
 		FE95D773180CE37E00D2450D /* ContentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FE95D772180CE37E00D2450D /* ContentItem.m */; };
+		FE981E0B181763E900B1B884 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE981E0A181763E900B1B884 /* CFNetwork.framework */; };
+		FE9A4E9C1816209A003C60D1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE9A4E9B1816209A003C60D1 /* MainViewController.m */; };
 		FE9C494B180B94F7002FE766 /* ContentModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FE9C4949180B94F7002FE766 /* ContentModel.xcdatamodeld */; };
 		FE9C494D180BD9F6002FE766 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE9C494C180BD9F6002FE766 /* CoreData.framework */; };
 		FE9DA71717F13ACE0014D94A /* HTTPDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = FE9DA71617F13ACE0014D94A /* HTTPDownloader.m */; };
-		FEA206E11804DCDA00DF1346 /* PageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA206E01804DCDA00DF1346 /* PageModel.m */; };
 		FEBAE2F318092E7F00767A58 /* ContentPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBAE2F218092E7F00767A58 /* ContentPageModel.m */; };
 		FEBAE2F61809804600767A58 /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBAE2F51809804600767A58 /* ContentViewController.m */; };
 		FEBC17DF1804349B005BBEFF /* foa002.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FEBC17DD1804349B005BBEFF /* foa002.jpg */; };
 		FEBC17E01804349B005BBEFF /* foa003.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FEBC17DE1804349B005BBEFF /* foa003.jpg */; };
 		FED7DCC317FC62BA0032D745 /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = FED7DCC217FC62BA0032D745 /* test.mp4 */; };
 		FED7DCC517FC654E0032D745 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED7DCC417FC654E0032D745 /* MediaPlayer.framework */; };
-		FEDFDFF217FEA02800075A4E /* testDispatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDFDFF117FEA02800075A4E /* testDispatchViewController.m */; };
-		FEDFDFF517FEA31F00075A4E /* stageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDFDFF417FEA31F00075A4E /* stageViewController.m */; };
+		FEDFDFF517FEA31F00075A4E /* StageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDFDFF417FEA31F00075A4E /* StageViewController.m */; };
 		FEE462C017E89526001BE2C7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE462BF17E89526001BE2C7 /* UIKit.framework */; };
 		FEE462C217E89526001BE2C7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE462C117E89526001BE2C7 /* Foundation.framework */; };
 		FEE462C417E89526001BE2C7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE462C317E89526001BE2C7 /* CoreGraphics.framework */; };
@@ -54,18 +54,19 @@
 		FE6F8A6517F90DAF00D502F4 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		FE6F8A6617F90DAF00D502F4 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
 		FE6F8A6717F90DAF00D502F4 /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
-		FE84120517FA720400223592 /* messageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = messageViewController.h; sourceTree = "<group>"; };
-		FE84120617FA720400223592 /* messageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = messageViewController.m; sourceTree = "<group>"; };
+		FE84120517FA720400223592 /* VideoPlaybackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlaybackViewController.h; sourceTree = "<group>"; };
+		FE84120617FA720400223592 /* VideoPlaybackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlaybackViewController.m; sourceTree = "<group>"; };
 		FE95D76E180CE37D00D2450D /* ContentBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentBase.h; path = data/ContentBase.h; sourceTree = "<group>"; };
 		FE95D76F180CE37D00D2450D /* ContentBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentBase.m; path = data/ContentBase.m; sourceTree = "<group>"; };
 		FE95D771180CE37E00D2450D /* ContentItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentItem.h; path = data/ContentItem.h; sourceTree = "<group>"; };
 		FE95D772180CE37E00D2450D /* ContentItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentItem.m; path = data/ContentItem.m; sourceTree = "<group>"; };
+		FE981E0A181763E900B1B884 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
+		FE9A4E9A1816209A003C60D1 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		FE9A4E9B1816209A003C60D1 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		FE9C494A180B94F7002FE766 /* ContentModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ContentModel.xcdatamodel; sourceTree = "<group>"; };
 		FE9C494C180BD9F6002FE766 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		FE9DA71517F13ACE0014D94A /* HTTPDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDownloader.h; sourceTree = "<group>"; };
 		FE9DA71617F13ACE0014D94A /* HTTPDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPDownloader.m; sourceTree = "<group>"; };
-		FEA206DF1804DCDA00DF1346 /* PageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PageModel.h; path = ../PageModel.h; sourceTree = "<group>"; };
-		FEA206E01804DCDA00DF1346 /* PageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PageModel.m; path = ../PageModel.m; sourceTree = "<group>"; };
 		FEBAE2F118092E7F00767A58 /* ContentPageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentPageModel.h; sourceTree = "<group>"; };
 		FEBAE2F218092E7F00767A58 /* ContentPageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentPageModel.m; sourceTree = "<group>"; };
 		FEBAE2F41809804600767A58 /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
@@ -74,10 +75,8 @@
 		FEBC17DE1804349B005BBEFF /* foa003.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = foa003.jpg; sourceTree = "<group>"; };
 		FED7DCC217FC62BA0032D745 /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
 		FED7DCC417FC654E0032D745 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/MediaPlayer.framework; sourceTree = DEVELOPER_DIR; };
-		FEDFDFF017FEA02800075A4E /* testDispatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testDispatchViewController.h; sourceTree = "<group>"; };
-		FEDFDFF117FEA02800075A4E /* testDispatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testDispatchViewController.m; sourceTree = "<group>"; };
-		FEDFDFF317FEA31F00075A4E /* stageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stageViewController.h; sourceTree = "<group>"; };
-		FEDFDFF417FEA31F00075A4E /* stageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = stageViewController.m; sourceTree = "<group>"; };
+		FEDFDFF317FEA31F00075A4E /* StageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StageViewController.h; sourceTree = "<group>"; };
+		FEDFDFF417FEA31F00075A4E /* StageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StageViewController.m; sourceTree = "<group>"; };
 		FEE462BC17E89526001BE2C7 /* SYM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SYM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEE462BF17E89526001BE2C7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FEE462C117E89526001BE2C7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -101,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE981E0B181763E900B1B884 /* CFNetwork.framework in Frameworks */,
 				FE25C1D217F0873D00A3EA32 /* libz.dylib in Frameworks */,
 				FED7DCC517FC654E0032D745 /* MediaPlayer.framework in Frameworks */,
 				FEE462C017E89526001BE2C7 /* UIKit.framework in Frameworks */,
@@ -139,7 +139,7 @@
 			path = minizip;
 			sourceTree = "<group>";
 		};
-		FE95D774180CE38600D2450D /* data */ = {
+		FE95D774180CE38600D2450D /* Data */ = {
 			isa = PBXGroup;
 			children = (
 				FE95D771180CE37E00D2450D /* ContentItem.h */,
@@ -147,7 +147,7 @@
 				FE95D76E180CE37D00D2450D /* ContentBase.h */,
 				FE95D76F180CE37D00D2450D /* ContentBase.m */,
 			);
-			name = data;
+			name = Data;
 			sourceTree = "<group>";
 		};
 		FE9DA71417F119AC0014D94A /* HTTPDownloader */ = {
@@ -159,13 +159,20 @@
 			name = HTTPDownloader;
 			sourceTree = "<group>";
 		};
+		FE9F87CB180F886300A1A987 /* MetaData */ = {
+			isa = PBXGroup;
+			children = (
+				FEE462D717E89526001BE2C7 /* MainStoryboard.storyboard */,
+				FE9C4949180B94F7002FE766 /* ContentModel.xcdatamodeld */,
+			);
+			name = MetaData;
+			sourceTree = "<group>";
+		};
 		FEBAE2F018092E2D00767A58 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				FEBAE2F118092E7F00767A58 /* ContentPageModel.h */,
 				FEBAE2F218092E7F00767A58 /* ContentPageModel.m */,
-				FEA206DF1804DCDA00DF1346 /* PageModel.h */,
-				FEA206E01804DCDA00DF1346 /* PageModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -200,6 +207,7 @@
 		FEE462BE17E89526001BE2C7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FE981E0A181763E900B1B884 /* CFNetwork.framework */,
 				FE9C494C180BD9F6002FE766 /* CoreData.framework */,
 				FED7DCC417FC654E0032D745 /* MediaPlayer.framework */,
 				FE25C1D117F0873D00A3EA32 /* libz.dylib */,
@@ -213,25 +221,24 @@
 		FEE462C517E89526001BE2C7 /* SYM */ = {
 			isa = PBXGroup;
 			children = (
-				FE95D774180CE38600D2450D /* data */,
+				FE9F87CB180F886300A1A987 /* MetaData */,
+				FE95D774180CE38600D2450D /* Data */,
 				FEBC17DC1804346F005BBEFF /* Resources */,
 				FE9DA71417F119AC0014D94A /* HTTPDownloader */,
 				FE6F8A5B17F90DAF00D502F4 /* ZipArchive */,
 				FEBAE2F018092E2D00767A58 /* Model */,
-				FE9C4949180B94F7002FE766 /* ContentModel.xcdatamodeld */,
 				FEBAE2F41809804600767A58 /* ContentViewController.h */,
 				FEBAE2F51809804600767A58 /* ContentViewController.m */,
-				FE84120517FA720400223592 /* messageViewController.h */,
-				FE84120617FA720400223592 /* messageViewController.m */,
-				FEDFDFF317FEA31F00075A4E /* stageViewController.h */,
-				FEDFDFF417FEA31F00075A4E /* stageViewController.m */,
+				FE9A4E9A1816209A003C60D1 /* MainViewController.h */,
+				FE9A4E9B1816209A003C60D1 /* MainViewController.m */,
+				FE84120517FA720400223592 /* VideoPlaybackViewController.h */,
+				FE84120617FA720400223592 /* VideoPlaybackViewController.m */,
+				FEDFDFF317FEA31F00075A4E /* StageViewController.h */,
+				FEDFDFF417FEA31F00075A4E /* StageViewController.m */,
 				FEE462CE17E89526001BE2C7 /* com_symAppDelegate.h */,
 				FEE462CF17E89526001BE2C7 /* com_symAppDelegate.m */,
-				FEDFDFF017FEA02800075A4E /* testDispatchViewController.h */,
-				FEDFDFF117FEA02800075A4E /* testDispatchViewController.m */,
 				FEE462DA17E89526001BE2C7 /* com_symViewController.h */,
 				FEE462DB17E89526001BE2C7 /* com_symViewController.m */,
-				FEE462D717E89526001BE2C7 /* MainStoryboard.storyboard */,
 				FEE462C617E89526001BE2C7 /* Supporting Files */,
 			);
 			path = SYM;
@@ -321,7 +328,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FEA206E11804DCDA00DF1346 /* PageModel.m in Sources */,
 				FEE462CC17E89526001BE2C7 /* main.m in Sources */,
 				FE6F8A6B17F90DAF00D502F4 /* zip.c in Sources */,
 				FE6F8A6A17F90DAF00D502F4 /* unzip.c in Sources */,
@@ -329,15 +335,15 @@
 				FEE462D017E89526001BE2C7 /* com_symAppDelegate.m in Sources */,
 				FE95D770180CE37D00D2450D /* ContentBase.m in Sources */,
 				FE6F8A6917F90DAF00D502F4 /* mztools.c in Sources */,
-				FEDFDFF217FEA02800075A4E /* testDispatchViewController.m in Sources */,
 				FE9DA71717F13ACE0014D94A /* HTTPDownloader.m in Sources */,
-				FEDFDFF517FEA31F00075A4E /* stageViewController.m in Sources */,
+				FEDFDFF517FEA31F00075A4E /* StageViewController.m in Sources */,
 				FEE462DC17E89526001BE2C7 /* com_symViewController.m in Sources */,
 				FEBAE2F61809804600767A58 /* ContentViewController.m in Sources */,
 				FE6F8A6C17F90DAF00D502F4 /* ZipArchive.mm in Sources */,
+				FE9A4E9C1816209A003C60D1 /* MainViewController.m in Sources */,
 				FE95D773180CE37E00D2450D /* ContentItem.m in Sources */,
 				FE9C494B180B94F7002FE766 /* ContentModel.xcdatamodeld in Sources */,
-				FE84120717FA720400223592 /* messageViewController.m in Sources */,
+				FE84120717FA720400223592 /* VideoPlaybackViewController.m in Sources */,
 				FE6F8A6817F90DAF00D502F4 /* ioapi.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
