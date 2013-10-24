@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FE25C1D217F0873D00A3EA32 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FE25C1D117F0873D00A3EA32 /* libz.dylib */; };
+		FE4EDF0F1818AD61000F44E7 /* NetworkUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4EDF0E1818AD61000F44E7 /* NetworkUtils.m */; };
 		FE6F8A6817F90DAF00D502F4 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = FE6F8A5E17F90DAF00D502F4 /* ioapi.c */; };
 		FE6F8A6917F90DAF00D502F4 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = FE6F8A6017F90DAF00D502F4 /* mztools.c */; };
 		FE6F8A6A17F90DAF00D502F4 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = FE6F8A6217F90DAF00D502F4 /* unzip.c */; };
@@ -43,6 +44,8 @@
 
 /* Begin PBXFileReference section */
 		FE25C1D117F0873D00A3EA32 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
+		FE4EDF0D1818AD61000F44E7 /* NetworkUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkUtils.h; sourceTree = "<group>"; };
+		FE4EDF0E1818AD61000F44E7 /* NetworkUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkUtils.m; sourceTree = "<group>"; };
 		FE6F8A5D17F90DAF00D502F4 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		FE6F8A5E17F90DAF00D502F4 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
 		FE6F8A5F17F90DAF00D502F4 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
@@ -150,13 +153,15 @@
 			name = Data;
 			sourceTree = "<group>";
 		};
-		FE9DA71417F119AC0014D94A /* HTTPDownloader */ = {
+		FE9DA71417F119AC0014D94A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				FE9DA71517F13ACE0014D94A /* HTTPDownloader.h */,
 				FE9DA71617F13ACE0014D94A /* HTTPDownloader.m */,
+				FE4EDF0D1818AD61000F44E7 /* NetworkUtils.h */,
+				FE4EDF0E1818AD61000F44E7 /* NetworkUtils.m */,
 			);
-			name = HTTPDownloader;
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		FE9F87CB180F886300A1A987 /* MetaData */ = {
@@ -224,7 +229,7 @@
 				FE9F87CB180F886300A1A987 /* MetaData */,
 				FE95D774180CE38600D2450D /* Data */,
 				FEBC17DC1804346F005BBEFF /* Resources */,
-				FE9DA71417F119AC0014D94A /* HTTPDownloader */,
+				FE9DA71417F119AC0014D94A /* Utils */,
 				FE6F8A5B17F90DAF00D502F4 /* ZipArchive */,
 				FEBAE2F018092E2D00767A58 /* Model */,
 				FEBAE2F41809804600767A58 /* ContentViewController.h */,
@@ -342,6 +347,7 @@
 				FE6F8A6C17F90DAF00D502F4 /* ZipArchive.mm in Sources */,
 				FE9A4E9C1816209A003C60D1 /* MainViewController.m in Sources */,
 				FE95D773180CE37E00D2450D /* ContentItem.m in Sources */,
+				FE4EDF0F1818AD61000F44E7 /* NetworkUtils.m in Sources */,
 				FE9C494B180B94F7002FE766 /* ContentModel.xcdatamodeld in Sources */,
 				FE84120717FA720400223592 /* VideoPlaybackViewController.m in Sources */,
 				FE6F8A6817F90DAF00D502F4 /* ioapi.c in Sources */,

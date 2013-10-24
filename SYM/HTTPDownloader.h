@@ -12,6 +12,4 @@
   HTTPDownloader* instance;
 }
 
-+ (HTTPDownloader*)sharedInstance;
-
 @end

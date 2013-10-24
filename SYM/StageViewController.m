@@ -49,7 +49,6 @@
   */
   
   // 當使用者按下開始下載的時候
-  HTTPDownloader* downloader =[HTTPDownloader sharedInstance];
   
   // [downloader resumeItem:url];
 }

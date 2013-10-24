@@ -11,32 +11,9 @@
 
 
 @implementation com_symAppDelegate
-
-
-#pragma mark 檢查網路是否有通
-- (BOOL)isNetworkAvailable {
-  CFNetDiagnosticRef diag;
-  diag = CFNetDiagnosticCreateWithURL (NULL, (__bridge CFURLRef)[NSURL URLWithString:@"www.apple.com"]);
-  CFNetDiagnosticStatus status;
-  status = CFNetDiagnosticCopyNetworkStatusPassively (diag, NULL);
-  
-  CFRelease (diag);
-  
-  if ( status == kCFNetDiagnosticConnectionUp ) {
-    NSLog (@"Connection is up");
-    return YES;
-  } // if
-  else {
-    NSLog (@"Connection is down");
-    return NO;
-  } // else
-}
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   // Override point for customization after application launch.
-  [self isNetworkAvailable];
-  
   return YES;
 }
 							
