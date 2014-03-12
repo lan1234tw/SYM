@@ -7,13 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <UIKit/UIProgressView.h>
+#import "ContentManager.h"
+
 #define STAGE_NUMBER  8 // Stage每頁要展示的項目數
 
 @interface StageViewController : UIViewController {
 }
 
-@property (weak, nonatomic) IBOutlet UIButton *itemBtn1;
-@property (weak, nonatomic) IBOutlet UIButton *itemBtn2;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrooView;
+@property (strong, nonatomic) NSString* imagePath;
+
+@property (strong, nonatomic) NSMutableArray* contentBases;
+@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray* imageViews;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray* descLabels;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray* durations;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray* buttons;
+
+@property (strong, nonatomic) IBOutletCollection(UIProgressView) NSArray* progressViews;
 
 @end

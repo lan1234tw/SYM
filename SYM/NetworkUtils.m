@@ -22,17 +22,13 @@
   status = CFNetDiagnosticCopyNetworkStatusPassively (diag, NULL);
   
   CFRelease (diag);
-  
   if ( status == kCFNetDiagnosticConnectionUp ) {
-    NSLog (@"Connection is up");
     return YES;
   } // if
   else {
-    NSLog (@"Connection is down");
     return NO;
   } // else
 }
-
 
 + (NSString *)macAddress {
   //MARKS:取得MAC Address

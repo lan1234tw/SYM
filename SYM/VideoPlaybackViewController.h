@@ -12,7 +12,6 @@
 @interface VideoPlaybackViewController : UIViewController
 
 @property (nonatomic, strong) MPMoviePlayerController* moviePlayer;
-
-- (IBAction)play_touched:(id)sender;
+@property (nonatomic, strong) NSString* videoPath;
 
 @end

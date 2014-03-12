@@ -7,15 +7,16 @@
 //
 
 #import "com_symAppDelegate.h"
-
-
+#import "ContentManager.h"
 
 @implementation com_symAppDelegate
-@synthesize downloader = _downloader;
+// @synthesize contentManager = _contentManager;
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  // _contentManager =[[ContentManager alloc] init];
+
   // Override point for customization after application launch.
+
   return YES;
 }
 							
@@ -29,6 +30,8 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+  
+  
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -44,55 +47,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
-
-- (NSURL*)applicationDocumentDirectory {
-    return [[[NSFileManager defaultManager]
-              URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-}
-
-#pragma marks - Core Data
-- (NSManagedObjectModel*)managedObjectModel {
-    if(nil != _objectModel) {
-        return _objectModel;
-    } // if
-    
-    NSURL* modelURL =[[NSBundle mainBundle] URLForResource:@"ContentModel" withExtension:@"momd"];
-    _objectModel =[[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-    return _objectModel;
-}
-
-- (NSPersistentStoreCoordinator*)persistentStoreCoordinator {
-    if(nil != _coordinator) {
-        return _coordinator;
-    } // if
-    
-    NSURL* storeURL =[[self applicationDocumentDirectory] URLByAppendingPathComponent:@"ContentModel.sqlite"];
-    NSError* error =nil;
-    _coordinator =[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    
-    if(nil == [_coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
-        NSLog(@"%@", error.description);
-        NSLog(@"%@", error.debugDescription);
-        abort();
-    } // if
-    
-    return _coordinator;
-}
-
-- (NSManagedObjectContext*)managedObjectContext {
-    if(nil != _context) {
-        return _context;
-    } // if
-    
-    if(nil == _coordinator) {
-      [self persistentStoreCoordinator];
-    } // if
-  
-    _context =[[NSManagedObjectContext alloc] init];
-    [_context setPersistentStoreCoordinator:_coordinator];
-    return _context;
 }
 
 @end

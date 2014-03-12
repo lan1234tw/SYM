@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13B42" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="ContentBase" representedClassName="ContentBase" syncable="YES">
-        <attribute name="archivePath" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="archivePath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="downloadComplete" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="endDate" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="previewPictureData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="pathBase" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="previewPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="ContentItem" inverseName="base" inverseEntity="ContentItem" syncable="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="ContentItem" syncable="YES"/>
     </entity>
     <entity name="ContentItem" representedClassName="ContentItem" syncable="YES">
         <attribute name="itemType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="path" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="pictureData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" storedInTruthFile="YES" syncable="YES"/>
-        <attribute name="thumbnailData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="picture" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" storedInTruthFile="YES" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="base" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ContentBase" inverseName="items" inverseEntity="ContentBase" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <fetchRequest name="fetchContentBaseAll" entity="ContentBase" predicateString="TRUEPREDICATE" includeSubentities="YES"/>
     <elements>
         <element name="ContentBase" positionX="0" positionY="0" width="0" height="0"/>
         <element name="ContentItem" positionX="0" positionY="0" width="0" height="0"/>

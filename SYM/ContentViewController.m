@@ -12,10 +12,9 @@
 @end
 
 @implementation ContentViewController
-@synthesize imagePath = _imagePath;
+@synthesize img =_img;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -23,21 +22,11 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
 - (void)viewWillAppear:(BOOL)animated {
-    UIImage* img =nil;
-    img =[UIImage imageWithContentsOfFile:self.imagePath];
-    
-    self.contentImageView.image =img;
+  self.contentImageView.image =self.img;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

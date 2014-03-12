@@ -21,10 +21,7 @@
 @synthesize moviePlayer = _moviePlayer;
 
 - (void)startPlayVideo:(id)paramSender {
-    NSBundle* mainBundle =[NSBundle mainBundle];
-    
-    NSString* urlAsString =[mainBundle pathForResource:@"test" ofType:@"mp4"];
-    NSURL* url =[NSURL fileURLWithPath:urlAsString];
+    NSURL* url =[NSURL fileURLWithPath:self.videoPath];
     
     if(nil != self.moviePlayer) {
         [self stopPlayVideo:nil];
@@ -38,11 +35,12 @@
         
         [[NSNotificationCenter defaultCenter]
          addObserver:self
-         selector:@selector(videoHasFinishedPlaying:)
-         name:MPMoviePlayerPlaybackDidFinishNotification
+         selector:@selector(videoPlayerPlaybackStateChanged:)
+         name:MPMoviePlayerPlaybackStateDidChangeNotification
          object:self.moviePlayer];
         
         self.moviePlayer.scalingMode =MPMovieScalingModeAspectFit;
+        self.moviePlayer.controlStyle =MPMovieControlStyleEmbedded;
         [self.moviePlayer play];    // 開始播放
         [self.view addSubview:self.moviePlayer.view];
         // [self.moviePlayer setFullscreen:YES animated:YES];
@@ -56,7 +54,7 @@
     if(nil != self.moviePlayer) {
         [[NSNotificationCenter defaultCenter]
          removeObserver:self
-         name:MPMoviePlayerPlaybackDidFinishNotification
+         name:MPMoviePlayerPlaybackStateDidChangeNotification
          object:self.moviePlayer];
         
         [self.moviePlayer stop];
@@ -77,7 +75,6 @@
             } // case
                 
             case MPMovieFinishReasonPlaybackError: {
-                NSLog(@"error >>>>>>>>");
                 break;
             } // case
                 
@@ -90,6 +87,20 @@
     } // if
 }
 
+
+- (void) videoPlayerPlaybackStateChanged:(NSNotification*) aNotification {
+  MPMoviePlayerController *player = [aNotification object];
+  
+  if(player.playbackState == MPMoviePlaybackStatePaused){
+    [self.navigationController.navigationBar setTranslucent:YES];
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    self.navigationController.navigationBarHidden = NO;
+  }
+  else if(player.playbackState == MPMoviePlaybackStatePlaying) {
+    self.navigationController.navigationBarHidden = YES;
+  }
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -99,26 +110,21 @@
     return self;
 }
 
-- (IBAction)play_touched:(id)sender {
-    [self startPlayVideo:nil];
-}
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    CGRect r =CGRectInset(self.view.bounds, 20, 20);
-    
-    CGRect o =self.view.bounds;
-    NSLog(@"%f %f %f %f", o.origin.x, o.origin.y, o.size.height, o.size.width);
-    NSLog(@"%f %f %f %f", r.origin.x, r.origin.y, r.size.height, r.size.width);
+  [self startPlayVideo:nil];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)viewWillDisappear:(BOOL)animated {
+  self.navigationController.navigationBarHidden =YES;
+}
+
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

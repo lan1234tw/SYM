@@ -10,5 +10,5 @@
 
 @interface ContentViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *contentImageView;
-@property (strong, nonatomic) NSString* imagePath;
+@property (weak, nonatomic) UIImage* img;
 @end
