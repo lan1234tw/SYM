@@ -90,9 +90,6 @@
     return _objectModel;
   } // if
   
-  // NSURL* modelURL =[[NSBundle mainBundle] URLForResource:@"ContentModel" withExtension:@"momd"];
-  // _objectModel =[[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-  
   _objectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
   return _objectModel;
 }
