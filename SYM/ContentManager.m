@@ -47,7 +47,7 @@
   } // if
   
   NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
-  NSString *postLength = [NSString stringWithFormat:@"%ul", [postData length]];
+  NSString *postLength = [NSString stringWithFormat:@"%lul", [postData length]];
   
   NSString* encodedUrl = [url stringByAddingPercentEscapesUsingEncoding:
                           NSASCIIStringEncoding];
@@ -228,9 +228,9 @@
 #pragma mark - NSURLConnectionDataDelegate
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
   if([response respondsToSelector:@selector(statusCode)]){
-    int statusCode = [((NSHTTPURLResponse *)response) statusCode];
+    NSInteger statusCode = [((NSHTTPURLResponse *)response) statusCode];
     if(200 != statusCode) {
-      NSLog(@"發生錯誤:HTTP Error:%d", statusCode);
+      NSLog(@"發生錯誤:HTTP Error:%d", (int)statusCode);
       return;
     } // if
     

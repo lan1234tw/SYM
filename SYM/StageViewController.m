@@ -12,7 +12,7 @@
 #import "VideoPlaybackViewController.h"
 
 @interface StageViewController () {
-  int downloadCount;
+  NSUInteger downloadCount;
 }
 
 @end
@@ -45,7 +45,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-  int beginHiddenIndex =0;
+  NSUInteger beginHiddenIndex =0;
   beginHiddenIndex =self.contentBases.count;
   
   UIButton* btn =nil;
@@ -110,7 +110,7 @@
 #pragma mark -
 // 下載完成的部分會走這一段
 - (IBAction)toContentScrollViewController:(id)sender {
-  int i =[self.buttons indexOfObject:sender];
+  NSUInteger i =[self.buttons indexOfObject:sender];
   ContentBase* base =self.contentBases[i];
   
   int type =[base.type intValue];
@@ -136,7 +136,7 @@
 
 // 按下開始下載的按鈕，會執行這一段
 - (IBAction)toBeginDownload:(id)sender {
-  int i =[self.buttons indexOfObject:sender];
+  NSUInteger i =[self.buttons indexOfObject:sender];
   UIButton* btn =(UIButton*)sender;
   [btn setTitle:@"下載準備中" forState:UIControlStateNormal];
 
@@ -149,7 +149,7 @@
 #pragma mark - ContentRequestTracking
 - (void)begin:(ContentBase*)base {
   dispatch_async(dispatch_get_main_queue(), ^{
-    int i =[self.contentBases indexOfObject:base];
+    NSUInteger i =[self.contentBases indexOfObject:base];
     if(NSNotFound == i) {
       return;
     } // if
@@ -168,7 +168,7 @@
 
 - (void)update:(ContentBase*)base updateProgress:(double)g {
   dispatch_async(dispatch_get_main_queue(), ^{
-    int i =[self.contentBases indexOfObject:base];
+    NSUInteger i =[self.contentBases indexOfObject:base];
     UIProgressView* progressView =self.progressViews[i];
     [progressView setProgress:g];
   });
@@ -185,7 +185,7 @@
     } // if
     
     // 更新UI，但要記得要處理找不到的情況，因為有可能正在讀的時候就換了別頁，如此一來index就會不對。
-    int i =[self.contentBases indexOfObject:base];
+    NSUInteger i =[self.contentBases indexOfObject:base];
     if(NSNotFound == i) {
       return;
     } // if
@@ -209,7 +209,7 @@
     
     [alert show];
     
-    int i =[self.contentBases indexOfObject:base];
+    NSUInteger i =[self.contentBases indexOfObject:base];
     
     // 記得要處理找不到的情況，因為有可能正在讀的時候就換了別頁，如此一來index就會不對。
     if(NSNotFound == i) {

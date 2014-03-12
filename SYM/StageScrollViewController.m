@@ -32,7 +32,7 @@
   
   // 從Core Data中讀取資料
   NSArray* contents =[ContentManager.instance getAllContentBase];
-  int totalPages =(contents.count +8) /8;
+  int totalPages =(int)((contents.count +8) /8);
   
   // 尺寸不能在viewDidLoad處理，否則會讀到直立的尺寸
   CGSize contentSize =CGSizeMake(
@@ -51,7 +51,7 @@
     controller =[self loadPageContent:i];
     [self addPageContent:controller];
     
-    baseLeftCount =contents.count - i*8;
+    baseLeftCount =(int)(contents.count - i*8);
     if(8 < baseLeftCount) {
       baseLeftCount =8;
     } // if

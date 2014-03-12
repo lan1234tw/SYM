@@ -71,7 +71,7 @@
   [alert show];
   
   dispatch_async(dispatch_get_main_queue(), ^{
-    int itemCount =0;
+    NSUInteger itemCount =0;
     itemCount =self.base.items.count;
   
     // 尺寸不能在viewDidLoad處理，否則會讀到直立的尺寸
@@ -190,7 +190,7 @@
 }
 
 - (IBAction)prevBtn_touched:(id)sender {
-  int page =self.pageControl.currentPage;
+  NSInteger page =self.pageControl.currentPage;
   
   if(0 >= page) {
     return;
@@ -208,7 +208,7 @@
 }
 
 - (IBAction)nextBtn_touched:(id)sender {
-  int page =self.pageControl.currentPage +1;
+  int page =(int)(self.pageControl.currentPage +1);
   
   if(page >= self.pageControl.numberOfPages) {
     return;
@@ -225,7 +225,7 @@
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-  int page =indexPath.row;
+  NSInteger page =indexPath.row;
   
   [self loadScrollViewWithPage:page -1];
   [self loadScrollViewWithPage:page];
