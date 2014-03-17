@@ -47,7 +47,7 @@
   } // if
   
   NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
-  NSString *postLength = [NSString stringWithFormat:@"%lul", [postData length]];
+  NSString *postLength = [NSString stringWithFormat:@"%ul", [postData length]];
   
   NSString* encodedUrl = [url stringByAddingPercentEscapesUsingEncoding:
                           NSASCIIStringEncoding];
@@ -85,6 +85,7 @@
   } // else
 }
 
+#pragma mark - Core Data Stack
 - (NSManagedObjectModel*)managedObjectModel {
   if(nil != _objectModel) {
     return _objectModel;
@@ -150,7 +151,7 @@
   return _context;
 }
 
-#pragma mark - Core Data Stack
+
 
 
 - (NSArray*)getContentBaseByArchivePath:(NSString*)archivePath {
