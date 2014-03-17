@@ -42,8 +42,8 @@
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+  [super viewDidLoad];
+
   NSUInteger numberPages = self.base.items.count;
   
   NSMutableArray *controllers = [[NSMutableArray alloc] init];
@@ -83,8 +83,7 @@
     self.contentScrollView.scrollsToTop = NO;
     self.pageControl.currentPage =0;
     self.pageControl.numberOfPages =itemCount;
-
-    // contentImages =[[NSMutableArray alloc] initWithCapacity:itemCount];
+    
     thumbnailImages =[[NSMutableArray alloc] initWithCapacity:itemCount];
     
     for(int i =0; i < itemCount; ++i) {
@@ -94,21 +93,6 @@
       [[ContentManager instance].managedObjectContext refreshObject:item mergeChanges:NO];
     } // for
     
-    /*
-    dispatch_apply(itemCount,
-       // 不能放到main queue裡面，否則會跑不出來
-       dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(size_t k) {
-         @try {
-           ContentItem* item;
-           item =self.base.items[k];
-           contentImages[k] =[UIImage imageWithData:item.pictureData];
-         }
-         @catch(NSException* ex) {
-           NSLog(@"%@", ex.debugDescription);
-         }
-      }
-    );
-    */
     [self.fastGuideView reloadData]; // 圖讀完了，要reload一下否則導覽會沒圖
     [self loadScrollViewWithPage:0];
     [self loadScrollViewWithPage:1];
