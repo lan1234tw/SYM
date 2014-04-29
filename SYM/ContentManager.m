@@ -26,6 +26,8 @@
 @implementation ContentManager
 @synthesize requestTracking = _requestTracking, queue = _queue;
 
+static NSString* sourceFilename =@"ContentModel.sqlite";
+
 + (ContentManager*)instance {
   static ContentManager* _instance =nil;
   static dispatch_once_t predicate;
@@ -86,12 +88,7 @@
 }
 
 #pragma mark - Core Data Stack
-- (NSManagedObjectModel*)managedObjectModel {
-  if(nil != _objectModel) {
-    return _objectModel;
-  } // if
-  
-  _objectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+- (NSManagedObjectModel*)objectModel {
   return _objectModel;
 }
 
@@ -107,25 +104,17 @@
     return _coordinator;
   } // if
   
-  NSURL* storeURL =[[Directories.instance documentDirectory]
-                    URLByAppendingPathComponent:@"ContentModel.sqlite"];
-  
-  NSDictionary* fileAttributes =[NSDictionary
-                                 dictionaryWithObject:NSFileProtectionCompleteUntilFirstUserAuthentication
-                                 forKey:NSFileProtectionKey];
+  NSURL* storeURL =[Directories.instance.documentDirectory
+                    URLByAppendingPathComponent:sourceFilename];
   
   NSError* error =nil;
-  [[NSFileManager defaultManager] setAttributes:fileAttributes ofItemAtPath:storeURL.path error:&error];
-  if(nil != error) {
-    NSLog(@"");
-  } // if
   
   if(nil == _objectModel) {
-    [self managedObjectModel];
+    [self objectModel];
   } // if
   
   _coordinator =[[NSPersistentStoreCoordinator alloc]
-                 initWithManagedObjectModel:[self managedObjectModel]];
+                 initWithManagedObjectModel:[self objectModel]];
   
   if(nil == [_coordinator addPersistentStoreWithType:NSSQLiteStoreType
                           configuration:nil URL:storeURL options:nil error:&error]) {
@@ -441,6 +430,15 @@
   if(self) {
     _queue =[[NSOperationQueue alloc] init];
     [self.queue setMaxConcurrentOperationCount:1];
+    
+    // === Start to create CoreData Stack
+    
+    // === Managed Object Model
+    _objectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+    
+    
+    // ===
+    
   } // if
   
   return self;
