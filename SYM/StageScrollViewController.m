@@ -10,7 +10,6 @@
 #import "StageViewController.h"
 
 @interface StageScrollViewController ()
-
 @end
 
 @implementation StageScrollViewController
@@ -23,15 +22,8 @@
   return self;
 }
 
-- (void)viewDidLoad {
-  [super viewDidLoad];
-}
-
-
 - (void)viewWillAppear:(BOOL)animated {
-  
-  // 從Core Data中讀取資料
-  NSArray* contents =[ContentManager.instance getAllContentBase];
+  NSArray* contents =[ContentManager.instance getAllContentBase]; // 從Core Data中讀取資料
   int totalPages =(int)((contents.count +8) /8);
   
   // 尺寸不能在viewDidLoad處理，否則會讀到直立的尺寸

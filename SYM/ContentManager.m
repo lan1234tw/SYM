@@ -12,7 +12,6 @@
 
 
 @interface ContentManager() {
-  NSManagedObjectContext* _context;
   NSManagedObjectModel* _objectModel;
   NSPersistentStoreCoordinator* _coordinator;
   
@@ -24,7 +23,7 @@
 @end
 
 @implementation ContentManager
-@synthesize requestTracking = _requestTracking, queue = _queue;
+@synthesize requestTracking = _requestTracking, queue = _queue, context =_context, importContext = _importContext;
 
 static NSString* sourceFilename =@"ContentModel.sqlite";
 
@@ -92,61 +91,10 @@ static NSString* sourceFilename =@"ContentModel.sqlite";
   return _objectModel;
 }
 
-- (NSPersistentStoreCoordinator*)persistentStoreCoordinator {
-  if(nil != _coordinator) {
-    return _coordinator;
-  } // if
-  
-  if (![NSThread currentThread].isMainThread) {
-    dispatch_sync(dispatch_get_main_queue(), ^{
-      [self persistentStoreCoordinator];
-    });
-    return _coordinator;
-  } // if
-  
-  NSURL* storeURL =[Directories.instance.documentDirectory
-                    URLByAppendingPathComponent:sourceFilename];
-  
-  NSError* error =nil;
-  
-  if(nil == _objectModel) {
-    [self objectModel];
-  } // if
-  
-  _coordinator =[[NSPersistentStoreCoordinator alloc]
-                 initWithManagedObjectModel:[self objectModel]];
-  
-  if(nil == [_coordinator addPersistentStoreWithType:NSSQLiteStoreType
-                          configuration:nil URL:storeURL options:nil error:&error]) {
-    NSLog(@"%@", error.description);
-    NSLog(@"%@", error.debugDescription);
-    abort();
-  } // if
-  
-  return _coordinator;
-}
-
-- (NSManagedObjectContext*)managedObjectContext {
-  if(nil != _context) {
-    return _context;
-  } // if
-  
-  if(nil == _coordinator) {
-    [self persistentStoreCoordinator];
-  } // if
-  
-  _context =[[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-  [_context setPersistentStoreCoordinator:_coordinator];
-  return _context;
-}
-
-
-
-
 - (NSArray*)getContentBaseByArchivePath:(NSString*)archivePath {
   
   NSEntityDescription* desc =nil;
-  desc =[NSEntityDescription entityForName:@"ContentBase" inManagedObjectContext:self.managedObjectContext];
+  desc =[NSEntityDescription entityForName:@"ContentBase" inManagedObjectContext:self.context];
   
   NSFetchRequest* req =nil;
   req =[[NSFetchRequest alloc] init];
@@ -158,7 +106,7 @@ static NSString* sourceFilename =@"ContentModel.sqlite";
   
   NSError* err =nil;
   NSArray* result =nil;
-  result =[self.managedObjectContext executeFetchRequest:req error:&err];
+  result =[self.context executeFetchRequest:req error:&err];
   if(nil != err) {
     NSLog(@"%@", err.debugDescription);
     return nil;
@@ -170,7 +118,7 @@ static NSString* sourceFilename =@"ContentModel.sqlite";
 - (NSArray*)getAllContentBase {
   
   NSEntityDescription* desc =nil;
-  desc =[NSEntityDescription entityForName:@"ContentBase" inManagedObjectContext:self.managedObjectContext];
+  desc =[NSEntityDescription entityForName:@"ContentBase" inManagedObjectContext:self.context];
   
   NSFetchRequest* req =nil;
   req =[[NSFetchRequest alloc] init];
@@ -186,7 +134,7 @@ static NSString* sourceFilename =@"ContentModel.sqlite";
   
   NSError* err =nil;
   NSArray* result =nil;
-  result =[self.managedObjectContext executeFetchRequest:req error:&err];
+  result =[self.context executeFetchRequest:req error:&err];
   if(nil != err) {
     NSLog(@"%@", err.debugDescription);
     return nil;
@@ -196,19 +144,17 @@ static NSString* sourceFilename =@"ContentModel.sqlite";
 }
 
 - (void)writeContentBase:(NSString*)_archivePath previewPictureData:(NSData*)data {
-  ContentBase* contentBase =nil;
-  contentBase =[NSEntityDescription insertNewObjectForEntityForName:@"ContentBase"
-                                             inManagedObjectContext:self.managedObjectContext];
-  
-  contentBase.archivePath =_archivePath;        // 內容壓縮檔路徑
-  contentBase.previewPictureData =[data copy];  // 預覽圖內容，用binary存到table中
-  contentBase.downloadComplete =[NSNumber numberWithBool:NO];
-  
-  NSError* err;
-  [self.managedObjectContext save:&err];
-  if(nil != err) {
-    NSLog(@"%@", err.debugDescription);
-  } // if
+  [self.importContext performBlockAndWait:^{
+    ContentBase* contentBase =nil;
+    contentBase =[NSEntityDescription insertNewObjectForEntityForName:@"ContentBase"
+                                               inManagedObjectContext:self.importContext];
+    
+    contentBase.archivePath =_archivePath;        // 內容壓縮檔路徑
+    contentBase.previewPictureData =[data copy];  // 預覽圖內容，用binary存到table中
+    contentBase.downloadComplete =[NSNumber numberWithBool:NO];
+    
+    [self saveContext];
+  }];
 }
 
 
@@ -265,7 +211,8 @@ static NSString* sourceFilename =@"ContentModel.sqlite";
     // zipFile.delegate =self;
     
     // 移掉附檔名後組合出一個新的路徑當作解壓縮的目錄，不移掉附檔名的話會出問題
-    NSURL* unzipURL =[[Directories.instance cacheDirectory] URLByAppendingPathComponent:[fileName stringByDeletingPathExtension]];
+    NSURL* unzipURL =[[Directories.instance cacheDirectory]
+                      URLByAppendingPathComponent:[fileName stringByDeletingPathExtension]];
     
     [zipFile UnzipOpenFile:storePath];
     [zipFile UnzipFileTo:[unzipURL path] overWrite:YES];
@@ -277,13 +224,13 @@ static NSString* sourceFilename =@"ContentModel.sqlite";
     NSError* error;
     NSFileManager* fileManager =[NSFileManager defaultManager];
     [fileManager removeItemAtPath:storePath error:&error];
+    
     if(nil != error) {
       NSLog(@"%@", error.debugDescription);
     } // if
     
     // 解壓縮完畢之後，並把ContentItem加到ContentBase裡面
     NSString* unzipUrlPath =[unzipURL path];
-    // NSFileManager *localFileManager=[[NSFileManager alloc] init];
     NSDirectoryEnumerator *dirEnum = [fileManager enumeratorAtPath:unzipUrlPath];
     
     NSString* file;
@@ -292,16 +239,22 @@ static NSString* sourceFilename =@"ContentModel.sqlite";
     
     bool processResult =YES;
     while ((file = [dirEnum nextObject])) {
-      if([[file pathExtension] isEqualToString: @"jpg"]) {
+      @autoreleasepool {
+      
+        if([file.pathExtension isEqualToString:@"jpg"]) {
         fullFilePath =[unzipUrlPath stringByAppendingPathComponent:file];
         
+        /* 這邊必須寫context而非importContext的原因在於：
+           ContentBase已經被讀到main queue那個context去了，如果沿用importContext的話，
+           會發生無法跨越context建立relationship的exception。
+         */
         contentItem =[NSEntityDescription insertNewObjectForEntityForName:@"ContentItem"
-                                          inManagedObjectContext:self.managedObjectContext];
+                                          inManagedObjectContext:self.context];
         
         NSData* data =nil;
         UIImage* img =[UIImage imageWithContentsOfFile:fullFilePath];
         data =UIImageJPEGRepresentation(img, 0.5);
-        contentItem.pictureData =data; // [data copy];
+        contentItem.pictureData =data;
         
         // 建立預覽用的小圖
         double ratio =img.size.height / img.size.width;
@@ -312,31 +265,30 @@ static NSString* sourceFilename =@"ContentModel.sqlite";
         UIGraphicsEndImageContext();
         
         data =UIImageJPEGRepresentation(thumbnailImg, 0.5);
-        contentItem.thumbnailData =data; // [data copy];
+        contentItem.thumbnailData =data;
         img =nil;
         thumbnailImg =nil;
         
         contentItem.type =[NSNumber numberWithInt:kItemTypeJPG];
         contentItem.path =[unzipUrlPath stringByAppendingPathComponent:file];
         contentItem.base = self.currentBase;
-        
-        // [self.currentBase addItemsObject:contentItem];
+
         self.currentBase.type =[NSNumber numberWithInt:kItemTypeJPG];
         data =nil;
         
         processResult =YES;
       } // if
       
-      else if([[file pathExtension] isEqualToString: @"png"]) {
+      else if([file.pathExtension isEqualToString:@"png"]) {
         fullFilePath =[unzipUrlPath stringByAppendingPathComponent:file];
         
         contentItem =[NSEntityDescription insertNewObjectForEntityForName:@"ContentItem"
-                                                   inManagedObjectContext:self.managedObjectContext];
+                                                   inManagedObjectContext:self.importContext];
         
         NSData* data =nil;
         UIImage* img =[UIImage imageWithContentsOfFile:fullFilePath];
         data =UIImagePNGRepresentation(img);
-        contentItem.pictureData =data; // [data copy];
+        contentItem.pictureData =data;
         
         // 建立預覽用的小圖
         double ratio =img.size.height / img.size.width;
@@ -347,42 +299,42 @@ static NSString* sourceFilename =@"ContentModel.sqlite";
         UIGraphicsEndImageContext();
         
         data =UIImagePNGRepresentation(thumbnailImg);
-        contentItem.thumbnailData =data; // [data copy];
+        contentItem.thumbnailData =data;
         img =nil;
         thumbnailImg =nil;
 
         contentItem.type =[NSNumber numberWithInt:kItemTypePNG];
         contentItem.path =[unzipUrlPath stringByAppendingPathComponent:file];
         contentItem.base = self.currentBase;
-        
-        // [self.currentBase addItemsObject:contentItem];
+
         self.currentBase.type =[NSNumber numberWithInt:kItemTypePNG];
         data =nil;
         
         processResult =YES;
       } // else if
       
-      else if([[file pathExtension] isEqualToString: @"mp4"]) {
+        else if([file.pathExtension isEqualToString:@"mp4"]) {
         fullFilePath =[unzipUrlPath stringByAppendingPathComponent:file];
         contentItem =[NSEntityDescription insertNewObjectForEntityForName:@"ContentItem"
-                                                   inManagedObjectContext:self.managedObjectContext];
+                                          inManagedObjectContext:self.importContext];
         
         contentItem.type =[NSNumber numberWithInt:kItemTypeMP4];
         contentItem.path =[unzipUrlPath stringByAppendingPathComponent:file];
         contentItem.base = self.currentBase;
-        
-        // [self.currentBase addItemsObject:contentItem];
+
         self.currentBase.type =[NSNumber numberWithInt:kItemTypeMP4];
         
         processResult =YES;
         break; // mp4只能有一個檔案，加進去之後就脫離迴圈
       } // else if
       
-      else {
+        else {
         self.currentBase.type =[NSNumber numberWithInt:kItemTypeUnknown];
         processResult =NO;
         NSLog(@"無法辨識的檔案%@", file);
       } // else
+        
+      } // @autoreleasepool
     } // while
     
     [fileManager removeItemAtPath:unzipUrlPath error:&error];
@@ -393,12 +345,9 @@ static NSString* sourceFilename =@"ContentModel.sqlite";
     if(YES != processResult) {
       self.currentBase.downloadComplete =[NSNumber numberWithBool:YES];
       NSError* err;
-      [self.managedObjectContext save:&err];
-      if(nil != err) {
-        NSLog(@"%@", err.debugDescription);
-      } // if
+      [self saveContext];
       
-      [self.managedObjectContext refreshObject:self.currentBase mergeChanges:NO];
+      [self.importContext refreshObject:self.currentBase mergeChanges:NO];
       if(nil != err) {
         NSLog(@"%@", err.debugDescription);
       } // if
@@ -411,7 +360,7 @@ static NSString* sourceFilename =@"ContentModel.sqlite";
     } // if
     else {
       if(YES == [self.requestTracking respondsToSelector:@selector(fail:message:)]) {
-        [self.requestTracking fail:self.currentBase message:@"下載內容終有無法辨識的內容"];
+        [self.requestTracking fail:self.currentBase message:@"下載內容中有無法辨識的內容"];
       } // if
     } // else
   } // if
@@ -432,16 +381,82 @@ static NSString* sourceFilename =@"ContentModel.sqlite";
     [self.queue setMaxConcurrentOperationCount:1];
     
     // === Start to create CoreData Stack
+    NSError* error =nil;
     
-    // === Managed Object Model
+    // === Managed object model
     _objectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     
     
-    // ===
+    // === Persistent store coordinator
+    NSURL* storeURL =[Directories.instance.documentDirectory
+                      URLByAppendingPathComponent:sourceFilename];
     
+    _coordinator =[[NSPersistentStoreCoordinator alloc]
+                   initWithManagedObjectModel:_objectModel];
+    
+    if(nil == [_coordinator addPersistentStoreWithType:NSSQLiteStoreType
+                            configuration:nil
+                            URL:storeURL
+                            options:nil
+                            error:&error]) {
+      NSLog(@"%@", error.description);
+      NSLog(@"%@", error.debugDescription);
+    } // if
+    
+    // === Managed object context
+    // 先設定背景作業的context
+    _importContext =[[NSManagedObjectContext alloc]
+               initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    [_importContext setPersistentStoreCoordinator:_coordinator];
+    [_importContext setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
+    
+    // 再設定UI所使用的context
+    _context =[[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    [_context setParentContext:_importContext];
+    [_context setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
   } // if
   
   return self;
+}
+
+
+
+#pragma mark - SAVING
+- (BOOL)saveContext {
+  if(YES == [_context hasChanges]) {
+    NSError *error = nil;
+    if ([_context save:&error]) {
+      NSLog(@"_context SAVED changes to persistent store");
+      return YES;
+    } // if
+    else {
+      NSLog(@"Failed to save _context: %@", error);
+      return NO;
+    } // else
+  } // if
+  
+  return YES;
+}
+
+
+- (void)backgroundSaveContext {
+  [self saveContext]; // 先把前景的context存起來
+  
+  // Then, save the parent context.
+  [_importContext performBlock:^{
+    if(YES == [_importContext hasChanges]) {
+      NSError *error = nil;
+      if ([_importContext save:&error]) {
+        NSLog(@"_backgroundContext SAVED changes to persistent store");
+      } // if
+      else {
+        NSLog(@"_backgroundContext FAILED to save: %@", error);
+      } // else
+    } // if
+    else {
+      NSLog(@"_parentContext SKIPPED saving as there are no changes");
+    } // else
+  }];
 }
 
 - (void)requestBase:(ContentBase*)base {

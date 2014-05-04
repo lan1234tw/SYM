@@ -90,7 +90,7 @@
       ContentItem* item =nil;
       item =[self.base.items objectAtIndex:i];
       thumbnailImages[i] =[UIImage imageWithData:item.thumbnailData];
-      [[ContentManager instance].managedObjectContext refreshObject:item mergeChanges:NO];
+      [ContentManager.instance.context refreshObject:item mergeChanges:NO];
     } // for
     
     [self.fastGuideView reloadData]; // 圖讀完了，要reload一下否則導覽會沒圖
@@ -102,7 +102,7 @@
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-  [[ContentManager instance].managedObjectContext refreshObject:self.base mergeChanges:NO];
+  [ContentManager.instance.context refreshObject:self.base mergeChanges:NO];
 }
 
 // -------------------------------------------------------------
@@ -159,7 +159,7 @@
 }
 
 - (IBAction)backBtn_touched:(id)sender {
-  [[ContentManager instance].managedObjectContext reset];
+  [ContentManager.instance.context reset];
   [self.navigationController popViewControllerAnimated:YES];
 }
 

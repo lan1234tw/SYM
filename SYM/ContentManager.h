@@ -34,14 +34,11 @@
 @property (nonatomic, strong) NSOperationQueue* queue;
 @property (nonatomic, weak) ContentBase* currentBase;
 
+@property (nonatomic, strong) NSManagedObjectContext* importContext;
+@property (nonatomic, strong) NSManagedObjectContext* context;
+
 + (ContentManager*)instance;
-
-/*
-- (NSManagedObjectModel*)managedObjectModel;
-- (NSPersistentStoreCoordinator*)persistentStoreCoordinator;
-*/
-
-- (NSManagedObjectContext*)managedObjectContext;
+- (BOOL)saveContext;
 
 - (NSArray*)getAllContentBase;
 - (NSArray*)getContentBaseByArchivePath:(NSString*)archivePath;

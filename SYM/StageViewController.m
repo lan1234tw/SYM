@@ -39,14 +39,11 @@
   return self;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
 - (void)viewWillAppear:(BOOL)animated {
   NSUInteger beginHiddenIndex =0;
   beginHiddenIndex =self.contentBases.count;
+  
+  NSLog(@"%d", beginHiddenIndex);
   
   UIButton* btn =nil;
   ContentBase* base =nil;
@@ -67,6 +64,7 @@
   } // for
   
   // 把不顯示的部分隱藏起來
+  
   for(;beginHiddenIndex < 8; ++beginHiddenIndex) {
     ((UIImageView*)self.imageViews[beginHiddenIndex]).hidden =YES;
     ((UILabel*)self.descLabels[beginHiddenIndex]).hidden =YES;
@@ -178,11 +176,7 @@
   dispatch_async(dispatch_get_main_queue(), ^{
     base.downloadComplete = [NSNumber numberWithBool:YES];
     
-    NSError* error;
-    [[ContentManager instance].managedObjectContext save:&error];
-    if(nil != error) {
-      NSLog(@"%@", error.debugDescription);
-    } // if
+    [ContentManager.instance saveContext];
     
     // 更新UI，但要記得要處理找不到的情況，因為有可能正在讀的時候就換了別頁，如此一來index就會不對。
     NSUInteger i =[self.contentBases indexOfObject:base];

@@ -21,12 +21,13 @@
   return _instance;
 }
 
-
+// 取得document目錄
 - (NSURL*)documentDirectory {
   return [[[NSFileManager defaultManager]
            URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
+// 取得cache目錄
 - (NSURL*)cacheDirectory {
   return [[[NSFileManager defaultManager]
            URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject];
